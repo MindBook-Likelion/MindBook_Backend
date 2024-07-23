@@ -7,9 +7,8 @@
 | 🐛 | : bug : | fix | 버그 수정 |
 | ♻️ | : recycle : | refactor | 코드 리팩토링 |
 
-<!--
+
 ### 2. 커밋 메시지
 ```
 ✨ feat: 로그인 개발 (#issue_number)
 ```
--->
