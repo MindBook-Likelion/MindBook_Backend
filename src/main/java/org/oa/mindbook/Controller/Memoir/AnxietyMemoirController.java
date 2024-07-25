@@ -18,7 +18,7 @@ public class AnxietyMemoirController {
     private final AnxietyMemoirService anxietyMemoirService;
 
     @PostMapping("")
-    public String createAnxiety(@RequestBody CreateAnxietyMemoirRequestDto createAnxietyMemoirRequestDto) {
+    public String createAnxietyMemoir(@RequestBody CreateAnxietyMemoirRequestDto createAnxietyMemoirRequestDto) {
         log.info("유저아이디: {}", createAnxietyMemoirRequestDto.getUserId());
         log.info("오늘 있었던 일: {}", createAnxietyMemoirRequestDto.getMemory());
         log.info("느낀점: {}",createAnxietyMemoirRequestDto.getImpression());
