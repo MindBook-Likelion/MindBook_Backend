@@ -4,9 +4,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.AngryMemoir;
-import org.oa.mindbook.Dto.request.CreateAngryMemoirRequestDto;
-import org.oa.mindbook.Dto.request.CreateAnnoyMemoirRequestDto;
-import org.oa.mindbook.Dto.response.AngryMemoirResponseDto;
+import org.oa.mindbook.Dto.request.Memoir.CreateAngryMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.AngryMemoirResponseDto;
 import org.oa.mindbook.Repository.Memoir.AngryMemoirRepository;
 import org.springframework.stereotype.Service;
 

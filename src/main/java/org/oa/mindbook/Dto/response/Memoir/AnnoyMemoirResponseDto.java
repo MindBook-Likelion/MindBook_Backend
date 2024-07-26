@@ -1,4 +1,4 @@
-package org.oa.mindbook.Dto.response;
+package org.oa.mindbook.Dto.response.Memoir;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

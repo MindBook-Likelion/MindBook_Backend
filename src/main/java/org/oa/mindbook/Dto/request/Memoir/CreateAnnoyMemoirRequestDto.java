@@ -1,18 +1,16 @@
-package org.oa.mindbook.Dto.request;
+package org.oa.mindbook.Dto.request.Memoir;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.oa.mindbook.Domain.Entity.Memoir.PastMemoir;
+import org.oa.mindbook.Domain.Entity.Memoir.AnnoyMemoir;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class CreatePastMemoirRequestDto {
+public class CreateAnnoyMemoirRequestDto {
 
     private String userId;
-
-    private String pastAt;
 
     private String memory;
 
@@ -20,10 +18,9 @@ public class CreatePastMemoirRequestDto {
 
     private String status;
 
-    public PastMemoir toEntity() {
-        return PastMemoir.builder()
+    public AnnoyMemoir toEntity() {
+        return AnnoyMemoir.builder()
                 .userId(userId)
-                .pastAt(pastAt)
                 .memory(memory)
                 .impression(impression)
                 .status(status)

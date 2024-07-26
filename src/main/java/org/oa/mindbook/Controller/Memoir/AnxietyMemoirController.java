@@ -2,8 +2,8 @@ package org.oa.mindbook.Controller.Memoir;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.oa.mindbook.Dto.request.CreateAnxietyMemoirRequestDto;
-import org.oa.mindbook.Dto.response.AnxietyMemoirResponseDto;
+import org.oa.mindbook.Dto.request.Memoir.CreateAnxietyMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.AnxietyMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.AnxietyMemoirService;
 import org.springframework.web.bind.annotation.*;
 

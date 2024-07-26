@@ -1,14 +1,14 @@
-package org.oa.mindbook.Dto.request;
+package org.oa.mindbook.Dto.request.Memoir;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.oa.mindbook.Domain.Entity.Memoir.AngryMemoir;
+import org.oa.mindbook.Domain.Entity.Memoir.JoyMemoir;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class CreateAngryMemoirRequestDto {
+public class CreateJoyMemoirRequestDto {
 
     private String userId;
 
@@ -18,8 +18,8 @@ public class CreateAngryMemoirRequestDto {
 
     private String status;
 
-    public AngryMemoir toEntity() {
-        return AngryMemoir.builder()
+    public JoyMemoir toEntity() {
+        return JoyMemoir.builder()
                 .userId(userId)
                 .memory(memory)
                 .impression(impression)
