@@ -4,8 +4,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.PastMemoir;
-import org.oa.mindbook.Dto.request.CreatePastMemoirRequestDto;
-import org.oa.mindbook.Dto.response.PastMemoirResponseDto;
+import org.oa.mindbook.Dto.request.Memoir.CreatePastMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.PastMemoirResponseDto;
 import org.oa.mindbook.Repository.Memoir.PastMemoirRepository;
 import org.springframework.stereotype.Service;
 

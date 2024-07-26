@@ -2,8 +2,8 @@ package org.oa.mindbook.Controller.Memoir;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.oa.mindbook.Dto.request.CreateSadMemoirRequestDto;
-import org.oa.mindbook.Dto.response.SadMemoirResponseDto;
+import org.oa.mindbook.Dto.request.Memoir.CreateSadMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.SadMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.SadMemoirService;
 import org.springframework.web.bind.annotation.*;
 

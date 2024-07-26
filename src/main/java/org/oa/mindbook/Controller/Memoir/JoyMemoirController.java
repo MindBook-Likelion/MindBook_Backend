@@ -2,10 +2,13 @@ package org.oa.mindbook.Controller.Memoir;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.oa.mindbook.Dto.request.CreateJoyMemoirRequestDto;
-import org.oa.mindbook.Dto.response.JoyMemoirResponseDto;
+import org.oa.mindbook.Dto.request.Memoir.CreateJoyMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.JoyMemoirListResponseDto;
+import org.oa.mindbook.Dto.response.Memoir.JoyMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.JoyMemoirService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -30,6 +33,11 @@ public class JoyMemoirController {
     @GetMapping("/{joyMemoirId}")
     public JoyMemoirResponseDto getJoyMemoir(@PathVariable Long joyMemoirId) {
         return joyMemoirService.getJoyMemoir(joyMemoirId);
+    }
+
+    @GetMapping("")
+    public List<JoyMemoirListResponseDto> getJoyMemoirList(@RequestParam String status) {
+        return joyMemoirService.getJoyMemoirList(status);
     }
 
 

@@ -1,11 +1,10 @@
-package org.oa.mindbook.Dto.response;
+package org.oa.mindbook.Dto.response.Memoir;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.Entity.Memoir.PastMemoir;
-import org.oa.mindbook.Repository.Memoir.PastMemoirRepository;
 
 @Getter
 @AllArgsConstructor

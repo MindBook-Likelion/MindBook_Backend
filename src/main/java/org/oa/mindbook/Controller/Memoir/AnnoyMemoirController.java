@@ -2,8 +2,8 @@ package org.oa.mindbook.Controller.Memoir;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.oa.mindbook.Dto.request.CreateAnnoyMemoirRequestDto;
-import org.oa.mindbook.Dto.response.AnnoyMemoirResponseDto;
+import org.oa.mindbook.Dto.request.Memoir.CreateAnnoyMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.AnnoyMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.AnnoyMemoirService;
 import org.springframework.web.bind.annotation.*;
 
