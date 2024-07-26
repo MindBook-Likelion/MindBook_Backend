@@ -3,11 +3,9 @@ package org.oa.mindbook.Controller.Memoir;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Dto.request.CreateAngryMemoirRequestDto;
+import org.oa.mindbook.Dto.response.AngryMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.AngryMemoirService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -27,5 +25,10 @@ public class AngryMemoirController {
         angryMemoirService.saveAngryMemoir(createAngryMemoirRequestDto);
 
         return "화남 회고록이 작성되었습니다.";
+    }
+
+    @GetMapping("/{angryMemoirId}")
+    public AngryMemoirResponseDto getAngryMemoir(@PathVariable Long angryMemoirId) {
+        return angryMemoirService.getAngryMemoir(angryMemoirId);
     }
 }
