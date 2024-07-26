@@ -14,7 +14,7 @@ public class AngryMemoir extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long angryMemoirId;
 
     private String userId;
 

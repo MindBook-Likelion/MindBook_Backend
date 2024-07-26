@@ -24,4 +24,11 @@ public class AngryMemoirService {
 
         return AngryMemoirResponseDto.of(angryMemoir);
     }
+
+    @Transactional
+    public AngryMemoirResponseDto getAngryMemoir(Long angryMemoirId) {
+        AngryMemoir angryMemoir = angryMemoirRepository.findById(angryMemoirId).orElseThrow();
+
+        return AngryMemoirResponseDto.of(angryMemoir);
+    }
 }
