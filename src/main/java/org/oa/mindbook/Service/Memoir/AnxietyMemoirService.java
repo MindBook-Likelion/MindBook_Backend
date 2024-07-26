@@ -25,7 +25,7 @@ public class AnxietyMemoirService {
     }
 
     @Transactional
-    public AnxietyMemoirResponseDto getAnxiety(Long anxietyMemoirId) {
+    public AnxietyMemoirResponseDto getAnxietyMemoir(Long anxietyMemoirId) {
         AnxietyMemoir anxietyMemoir = anxietyMemoirRepository.findById(anxietyMemoirId).orElseThrow();
 
         return AnxietyMemoirResponseDto.of(anxietyMemoir);

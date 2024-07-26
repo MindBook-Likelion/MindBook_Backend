@@ -23,4 +23,11 @@ public class AnnoyMemoirService {
 
         return AnnoyMemoirResponseDto.of(annoyMemoir);
     }
+
+    @Transactional
+    public AnnoyMemoirResponseDto getAnnoyMemoir(Long annoyMemoirId) {
+        AnnoyMemoir annoyMemoir = annoyMemoirRepository.findById(annoyMemoirId).orElseThrow();
+
+        return AnnoyMemoirResponseDto.of(annoyMemoir);
+    }
 }

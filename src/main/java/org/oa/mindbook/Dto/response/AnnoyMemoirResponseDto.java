@@ -12,7 +12,7 @@ import org.oa.mindbook.Domain.Entity.Memoir.AnnoyMemoir;
 @Builder
 public class AnnoyMemoirResponseDto {
 
-    private Long id;
+    private Long annoyMemoirId;
 
     private String userId;
 
@@ -26,7 +26,7 @@ public class AnnoyMemoirResponseDto {
 
     public static AnnoyMemoirResponseDto of(AnnoyMemoir annoyMemoir) {
         return AnnoyMemoirResponseDto.builder()
-                .id(annoyMemoir.getId())
+                .annoyMemoirId(annoyMemoir.getAnnoyMemoirId())
                 .userId(annoyMemoir.getUserId())
                 .createdAt(annoyMemoir.getCreatedAt())
                 .memory(annoyMemoir.getMemory())
