@@ -13,7 +13,7 @@ import org.oa.mindbook.Repository.Memoir.PastMemoirRepository;
 @Builder
 public class PastMemoirResponseDto {
 
-    private Long id;
+    private Long pastMemoirId;
 
     private String userId;
 
@@ -29,7 +29,7 @@ public class PastMemoirResponseDto {
 
     public static PastMemoirResponseDto of(PastMemoir pastMemoir) {
         return PastMemoirResponseDto.builder()
-                .id(pastMemoir.getId())
+                .pastMemoirId(pastMemoir.getPastMemoirId())
                 .userId(pastMemoir.getUserId())
                 .createdAt(pastMemoir.getCreatedAt())
                 .pastAt(pastMemoir.getPastAt())

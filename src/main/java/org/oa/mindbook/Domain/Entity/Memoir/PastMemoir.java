@@ -13,7 +13,7 @@ public class PastMemoir extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long pastMemoirId;
 
     private String userId;
 
