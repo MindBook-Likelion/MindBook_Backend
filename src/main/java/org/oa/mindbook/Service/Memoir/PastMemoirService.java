@@ -23,4 +23,11 @@ public class PastMemoirService {
 
         return PastMemoirResponseDto.of(pastMemoir);
     }
+
+    @Transactional
+    public PastMemoirResponseDto getPastMemoir(Long pastMemoirId) {
+        PastMemoir pastMemoir = pastMemoirRepository.findById(pastMemoirId).orElseThrow();
+
+        return  PastMemoirResponseDto.of(pastMemoir);
+    }
 }

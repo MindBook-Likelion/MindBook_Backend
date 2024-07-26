@@ -3,11 +3,9 @@ package org.oa.mindbook.Controller.Memoir;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Dto.request.CreatePastMemoirRequestDto;
+import org.oa.mindbook.Dto.response.PastMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.PastMemoirService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -28,5 +26,10 @@ public class PastMemoirController {
         pastMemoirService.savePastMemoir(createPastMemoirRequestDto);
 
         return "추억 회고록이 작성되었습니다.";
+    }
+
+    @GetMapping("/{pastMemoirId}")
+    public PastMemoirResponseDto getPastMemoir(@PathVariable Long pastMemoirId) {
+        return pastMemoirService.getPastMemoir(pastMemoirId);
     }
 }
