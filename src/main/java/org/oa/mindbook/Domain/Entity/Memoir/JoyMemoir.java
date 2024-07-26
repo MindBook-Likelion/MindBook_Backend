@@ -16,7 +16,7 @@ public class JoyMemoir extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long joyMemoirId;
 
     private String userId;
 

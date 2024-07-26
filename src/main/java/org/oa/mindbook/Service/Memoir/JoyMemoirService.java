@@ -24,4 +24,11 @@ public class JoyMemoirService {
         return JoyMemoirResponseDto.of(joyMemoir);
 
     }
+
+    @Transactional
+    public JoyMemoirResponseDto getJoyMemoir(Long id) {
+        JoyMemoir joyMemoir = joyMemoirRepository.findById(id).orElseThrow();
+
+        return JoyMemoirResponseDto.of(joyMemoir);
+    }
 }
