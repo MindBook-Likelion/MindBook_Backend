@@ -3,9 +3,12 @@ package org.oa.mindbook.Controller.Memoir;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Dto.request.Memoir.CreateAnxietyMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.AnxietyMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.AnxietyMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.AnxietyMemoirService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -30,5 +33,10 @@ public class AnxietyMemoirController {
     @GetMapping("/{anxietyMemoirId}")
     public AnxietyMemoirResponseDto getAnxietyMemoir(@PathVariable Long anxietyMemoirId) {
         return anxietyMemoirService.getAnxietyMemoir(anxietyMemoirId);
+    }
+
+    @GetMapping("")
+    public List<AnxietyMemoirListResponseDto> getAnxietyMemoirList(@RequestParam String status) {
+        return anxietyMemoirService.getAnxietyMemoirList(status);
     }
 }
