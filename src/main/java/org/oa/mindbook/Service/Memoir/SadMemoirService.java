@@ -26,4 +26,11 @@ public class SadMemoirService {
 
         return SadMemoirResponseDto.of(sadMemoir);
     }
+
+    @Transactional
+    public SadMemoirResponseDto getSadMemoir(Long sadMemoirId) {
+        SadMemoir sadMemoir = sadMemoirRepository.findById(sadMemoirId).orElseThrow();
+
+        return SadMemoirResponseDto.of(sadMemoir);
+    }
 }
