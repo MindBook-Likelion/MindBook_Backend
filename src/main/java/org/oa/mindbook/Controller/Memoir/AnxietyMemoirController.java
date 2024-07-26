@@ -29,6 +29,6 @@ public class AnxietyMemoirController {
 
     @GetMapping("/{anxietyMemoirId}")
     public AnxietyMemoirResponseDto getAnxietyMemoir(@PathVariable Long anxietyMemoirId) {
-        return anxietyMemoirService.getAnxiety(anxietyMemoirId);
+        return anxietyMemoirService.getAnxietyMemoir(anxietyMemoirId);
     }
 }
