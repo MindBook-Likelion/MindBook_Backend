@@ -14,7 +14,7 @@ public class AnxietyMemoir extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long anxietyMemoirId;
 
     private String userId;
 

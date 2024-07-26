@@ -26,8 +26,8 @@ public class JoyMemoirService {
     }
 
     @Transactional
-    public JoyMemoirResponseDto getJoyMemoir(Long id) {
-        JoyMemoir joyMemoir = joyMemoirRepository.findById(id).orElseThrow();
+    public JoyMemoirResponseDto getJoyMemoir(Long joyMemoirId) {
+        JoyMemoir joyMemoir = joyMemoirRepository.findById(joyMemoirId).orElseThrow();
 
         return JoyMemoirResponseDto.of(joyMemoir);
     }
