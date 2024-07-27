@@ -16,7 +16,7 @@ public class AnnoyMemoir extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long annoyMemoirId;
 
-    private String userId;
+    private Long userId;
 
     @Column(columnDefinition = "TEXT")
     private String memory;
@@ -27,7 +27,7 @@ public class AnnoyMemoir extends BaseTimeEntity {
     private String status;
 
     @Builder
-    public AnnoyMemoir(String userId, String memory, String impression, String status) {
+    public AnnoyMemoir(Long userId, String memory, String impression, String status) {
         this.userId = userId;
         this.memory = memory;
         this.impression = impression;

@@ -10,7 +10,7 @@ import org.oa.mindbook.Domain.Entity.Memoir.AnxietyMemoir;
 @Getter
 public class CreateAnxietyMemoirRequestDto {
 
-    private String userId;
+    private Long userId;
 
     private String memory;
 

@@ -10,7 +10,7 @@ import org.oa.mindbook.Domain.Entity.Memoir.AnnoyMemoir;
 @Getter
 public class CreateAnnoyMemoirRequestDto {
 
-    private String userId;
+    private Long userId;
 
     private String memory;
 

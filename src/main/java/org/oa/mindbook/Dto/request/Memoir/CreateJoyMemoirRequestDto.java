@@ -10,7 +10,7 @@ import org.oa.mindbook.Domain.Entity.Memoir.JoyMemoir;
 @Getter
 public class CreateJoyMemoirRequestDto {
 
-    private String userId;
+    private Long userId;
 
     private String memory;
 

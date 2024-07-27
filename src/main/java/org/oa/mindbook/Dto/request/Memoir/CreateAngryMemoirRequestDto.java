@@ -10,7 +10,7 @@ import org.oa.mindbook.Domain.Entity.Memoir.AngryMemoir;
 @Getter
 public class CreateAngryMemoirRequestDto {
 
-    private String userId;
+    private Long userId;
 
     private String memory;
 
