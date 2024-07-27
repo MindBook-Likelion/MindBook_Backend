@@ -14,7 +14,7 @@ public class PastMemoirResponseDto {
 
     private Long pastMemoirId;
 
-    private String userId;
+    private Long userId;
 
     private String createdAt;
 

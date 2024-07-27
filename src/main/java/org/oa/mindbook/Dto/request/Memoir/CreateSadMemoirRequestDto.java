@@ -10,7 +10,7 @@ import org.oa.mindbook.Domain.Entity.Memoir.SadMemoir;
 @Getter
 public class CreateSadMemoirRequestDto {
 
-    private String userId;
+    private Long userId;
 
     private String memory;
 

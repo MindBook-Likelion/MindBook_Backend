@@ -14,7 +14,7 @@ public class AnxietyMemoirResponseDto {
 
     private Long anxietyMemoirId;
 
-    private String userId;
+    private Long userId;
 
     private String createdAt;
 

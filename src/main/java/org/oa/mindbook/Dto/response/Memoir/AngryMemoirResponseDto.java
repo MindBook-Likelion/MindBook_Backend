@@ -14,7 +14,7 @@ public class AngryMemoirResponseDto {
 
     private Long angryMemoirId;
 
-    private String userId;
+    private Long userId;
 
     private String createdAt;
 

@@ -16,7 +16,7 @@ public class AnxietyMemoir extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long anxietyMemoirId;
 
-    private String userId;
+    private Long userId;
 
     @Column(columnDefinition = "TEXT")
     private String memory;
@@ -27,7 +27,7 @@ public class AnxietyMemoir extends BaseTimeEntity {
     private String status;
 
     @Builder
-    public AnxietyMemoir(String userId, String memory, String impression, String status) {
+    public AnxietyMemoir(Long userId, String memory, String impression, String status) {
         this.userId = userId;
         this.memory = memory;
         this.impression = impression;

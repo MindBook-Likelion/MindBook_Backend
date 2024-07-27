@@ -14,7 +14,7 @@ public class AnnoyMemoirResponseDto {
 
     private Long annoyMemoirId;
 
-    private String userId;
+    private Long userId;
 
     private String createdAt;
 

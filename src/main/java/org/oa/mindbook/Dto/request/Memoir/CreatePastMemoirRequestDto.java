@@ -10,7 +10,7 @@ import org.oa.mindbook.Domain.Entity.Memoir.PastMemoir;
 @Getter
 public class CreatePastMemoirRequestDto {
 
-    private String userId;
+    private Long userId;
 
     private String pastAt;
 

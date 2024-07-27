@@ -15,7 +15,7 @@ public class PastMemoir extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pastMemoirId;
 
-    private String userId;
+    private Long userId;
 
     private String pastAt;
 
@@ -28,7 +28,7 @@ public class PastMemoir extends BaseTimeEntity {
     private String status;
 
     @Builder
-    public PastMemoir(String userId, String pastAt, String memory, String impression, String status) {
+    public PastMemoir(Long userId, String pastAt, String memory, String impression, String status) {
         this.userId = userId;
         this.pastAt = pastAt;
         this.memory = memory;
