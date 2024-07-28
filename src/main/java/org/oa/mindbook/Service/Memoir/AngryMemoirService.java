@@ -5,13 +5,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.AngryMemoir;
 import org.oa.mindbook.Dto.request.Memoir.CreateAngryMemoirRequestDto;
-import org.oa.mindbook.Dto.request.MemoirComment.CreateAngryMemoirCommentRequestDto;
 import org.oa.mindbook.Dto.response.Memoir.AngryMemoirResponseDto;
 import org.oa.mindbook.Dto.response.MemoirComment.AngryMemoirCommentResponseDto;
-import org.oa.mindbook.Dto.response.MemoirComment.AnnoyMemoirCommentResponseDto;
 import org.oa.mindbook.Repository.Memoir.AngryMemoirRepository;
 import org.oa.mindbook.Repository.MemoirComment.AngryMemoirCommentRepository;
-import org.oa.mindbook.Service.MemoirComment.AngryMemoirCommentService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
