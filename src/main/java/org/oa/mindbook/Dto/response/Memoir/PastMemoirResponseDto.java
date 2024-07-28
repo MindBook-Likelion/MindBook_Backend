@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.Entity.Memoir.PastMemoir;
+import org.oa.mindbook.Dto.response.MemoirComment.PastMemoirCommentResponseDto;
+
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -26,7 +29,9 @@ public class PastMemoirResponseDto {
 
     private String status;
 
-    public static PastMemoirResponseDto of(PastMemoir pastMemoir) {
+    private List<PastMemoirCommentResponseDto> commentList;
+
+    public static PastMemoirResponseDto of(PastMemoir pastMemoir, List<PastMemoirCommentResponseDto> commentList) {
         return PastMemoirResponseDto.builder()
                 .pastMemoirId(pastMemoir.getPastMemoirId())
                 .userId(pastMemoir.getUserId())
@@ -35,6 +40,7 @@ public class PastMemoirResponseDto {
                 .memory(pastMemoir.getMemory())
                 .impression(pastMemoir.getImpression())
                 .status(pastMemoir.getStatus())
+                .commentList(commentList)
                 .build();
     }
 }
