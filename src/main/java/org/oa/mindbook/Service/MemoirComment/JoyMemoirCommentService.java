@@ -21,8 +21,6 @@ public class JoyMemoirCommentService {
     public void saveJoyMemoirComment(CreateJoyMemoirCommentRequestDto dto) {
         JoyMemoir joyMemoir = joyMemoirRepository.findById(dto.getJoyMemoirId()).orElseThrow();
 
-        log.info(dto.getContent());
-
         joyMemoirCommentRepository.save(JoyMemoirComment.builder()
                 .userId(dto.getUserId())
                 .joyMemoir(joyMemoir)
