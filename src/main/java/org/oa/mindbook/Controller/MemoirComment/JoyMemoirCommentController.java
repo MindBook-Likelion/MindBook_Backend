@@ -18,9 +18,7 @@ public class JoyMemoirCommentController {
     private final JoyMemoirCommentService joyMemoirCommentService;
 
     @PostMapping("")
-    public String createJoyMemoir(@RequestBody CreateJoyMemoirCommentRequestDto dto) {
-
-        log.info(dto.getContent());
+    public String createJoyMemoirComment(@RequestBody CreateJoyMemoirCommentRequestDto dto) {
 
         joyMemoirCommentService.saveJoyMemoirComment(dto);
 
