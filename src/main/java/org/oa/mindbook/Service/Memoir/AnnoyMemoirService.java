@@ -6,8 +6,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.AnnoyMemoir;
 import org.oa.mindbook.Dto.request.Memoir.CreateAnnoyMemoirRequestDto;
 import org.oa.mindbook.Dto.response.Memoir.AnnoyMemoirResponseDto;
+import org.oa.mindbook.Dto.response.MemoirComment.AnnoyMemoirCommentResponseDto;
 import org.oa.mindbook.Repository.Memoir.AnnoyMemoirRepository;
+import org.oa.mindbook.Repository.MemoirComment.AnnoyMemoirCommentRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -15,19 +20,31 @@ import org.springframework.stereotype.Service;
 public class AnnoyMemoirService {
 
     private final AnnoyMemoirRepository annoyMemoirRepository;
+    private final AnnoyMemoirCommentRepository annoyMemoirCommentRepository;
 
     @Transactional
-    public AnnoyMemoirResponseDto saveAnnoyMemoir(CreateAnnoyMemoirRequestDto createAnnoyMemoirRequestDto) {
+    public void saveAnnoyMemoir(CreateAnnoyMemoirRequestDto createAnnoyMemoirRequestDto) {
 
         AnnoyMemoir annoyMemoir = annoyMemoirRepository.save(createAnnoyMemoirRequestDto.toEntity());
 
-        return AnnoyMemoirResponseDto.of(annoyMemoir);
     }
 
     @Transactional
     public AnnoyMemoirResponseDto getAnnoyMemoir(Long annoyMemoirId) {
         AnnoyMemoir annoyMemoir = annoyMemoirRepository.findById(annoyMemoirId).orElseThrow();
+        List<AnnoyMemoirCommentResponseDto> commentList = annoyMemoirCommentRepository.findByAnnoyMemoirId(annoyMemoirId).stream().map(
+                comment -> {
+                    return AnnoyMemoirCommentResponseDto.builder()
+                            .annoyMemoirCommentId(comment.getAnnoyMemoirCommentId())
+//                            .nickname(comment.getUser().getUserId())
+                            .nickname("nickname")
+                            .content(comment.getContent())
+                            .createdAt(comment.getCreatedAt())
+                            .build();
 
-        return AnnoyMemoirResponseDto.of(annoyMemoir);
+                }
+        ).collect(Collectors.toList());
+
+        return AnnoyMemoirResponseDto.of(annoyMemoir, commentList);
     }
 }
