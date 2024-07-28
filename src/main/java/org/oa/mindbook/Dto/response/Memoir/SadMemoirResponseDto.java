@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.Entity.Memoir.SadMemoir;
+import org.oa.mindbook.Dto.response.MemoirComment.SadMemoirCommentResponseDto;
+
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
@@ -24,7 +27,9 @@ public class SadMemoirResponseDto {
 
     private String status;
 
-    public static SadMemoirResponseDto of(SadMemoir sadMemoir) {
+    private List<SadMemoirCommentResponseDto> commentList;
+
+    public static SadMemoirResponseDto of(SadMemoir sadMemoir, List<SadMemoirCommentResponseDto> commentList) {
         return SadMemoirResponseDto.builder()
                 .sadMemoirId(sadMemoir.getSadMemoirId())
                 .userId(sadMemoir.getUserId())
@@ -32,6 +37,7 @@ public class SadMemoirResponseDto {
                 .memory(sadMemoir.getMemory())
                 .impression(sadMemoir.getImpression())
                 .status(sadMemoir.getStatus())
+                .commentList(commentList)
                 .build();
     }
 }
