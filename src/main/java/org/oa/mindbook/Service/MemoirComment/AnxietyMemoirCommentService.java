@@ -30,4 +30,11 @@ public class AnxietyMemoirCommentService {
 
 
     }
+
+    @Transactional
+    public void deleteAnxietyMemoirComment(Long anxietyMemoirCommentId) {
+        AnxietyMemoirComment anxietyMemoirComment = anxietyMemoirCommentRepository.findById(anxietyMemoirCommentId).orElseThrow();
+
+        anxietyMemoirCommentRepository.deleteById(anxietyMemoirComment.getAnxietyMemoirCommentId());
+    }
 }
