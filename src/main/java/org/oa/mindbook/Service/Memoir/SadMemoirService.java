@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.SadMemoir;
 import org.oa.mindbook.Dto.request.Memoir.CreateSadMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.SadMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.SadMemoirResponseDto;
 import org.oa.mindbook.Dto.response.MemoirComment.SadMemoirCommentResponseDto;
 import org.oa.mindbook.Repository.Memoir.SadMemoirRepository;
@@ -44,5 +45,16 @@ public class SadMemoirService {
         ).collect(Collectors.toList());
 
         return SadMemoirResponseDto.of(sadMemoir, commentList);
+    }
+
+    @Transactional
+    public List<SadMemoirListResponseDto> getSadMemoirList(String status) {
+        List<SadMemoir> sadMemoir = sadMemoirRepository.findByStatus(status);
+
+        List<SadMemoirListResponseDto> responseDtoList = sadMemoir.stream()
+                .map(SadMemoirListResponseDto::of)
+                .collect(Collectors.toList());
+
+        return responseDtoList;
     }
 }

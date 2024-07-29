@@ -3,9 +3,12 @@ package org.oa.mindbook.Controller.Memoir;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Dto.request.Memoir.CreateSadMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.SadMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.SadMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.SadMemoirService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -30,5 +33,10 @@ public class SadMemoirController {
     @GetMapping("/{sadMemoirId}")
     public SadMemoirResponseDto getSadMemoir(@PathVariable Long sadMemoirId) {
         return sadMemoirService.getSadMemoir(sadMemoirId);
+    }
+
+    @GetMapping("")
+    public List<SadMemoirListResponseDto> getSadMemoirList(@RequestParam String status) {
+        return sadMemoirService.getSadMemoirList(status);
     }
 }
