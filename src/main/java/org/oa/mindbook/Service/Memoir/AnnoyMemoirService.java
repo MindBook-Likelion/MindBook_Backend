@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.AnnoyMemoir;
 import org.oa.mindbook.Dto.request.Memoir.CreateAnnoyMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.AnnoyMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.AnnoyMemoirResponseDto;
 import org.oa.mindbook.Dto.response.MemoirComment.AnnoyMemoirCommentResponseDto;
 import org.oa.mindbook.Repository.Memoir.AnnoyMemoirRepository;
@@ -46,5 +47,18 @@ public class AnnoyMemoirService {
         ).collect(Collectors.toList());
 
         return AnnoyMemoirResponseDto.of(annoyMemoir, commentList);
+    }
+
+    @Transactional
+    public List<AnnoyMemoirListResponseDto> getAnnoyMemoirList(String status) {
+        List<AnnoyMemoir> annoyMemoir = annoyMemoirRepository.findByStatus(status);
+
+        List<AnnoyMemoirListResponseDto> responseDtoList = annoyMemoir.stream()
+                .map(AnnoyMemoirListResponseDto::of)
+                .collect(Collectors.toList());
+
+        return responseDtoList;
+
+
     }
 }
