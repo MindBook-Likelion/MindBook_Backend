@@ -6,6 +6,8 @@ import org.oa.mindbook.Dto.request.Memoir.CreateJoyMemoirRequestDto;
 import org.oa.mindbook.Dto.response.Memoir.JoyMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.JoyMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.JoyMemoirService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,20 +21,18 @@ public class JoyMemoirController {
     private final JoyMemoirService joyMemoirService;
 
     @PostMapping("")
-    public String createJoyMemoir(@RequestBody CreateJoyMemoirRequestDto createJoyMemoirRequestDto) {
-        log.info("유저아이디: {}", createJoyMemoirRequestDto.getUserId());
+    public ResponseEntity<?> createJoyMemoir(@RequestBody CreateJoyMemoirRequestDto createJoyMemoirRequestDto) {
         log.info("오늘 있었던 일: {}", createJoyMemoirRequestDto.getMemory());
         log.info("느낀점: {}",createJoyMemoirRequestDto.getImpression());
         log.info("공개여부: {}", createJoyMemoirRequestDto.getStatus());
 
-        joyMemoirService.saveJoyMemoir(createJoyMemoirRequestDto);
-
-        return "기쁨 회고록이 작성되었습니다.";
+        Long JoyMemoirId = joyMemoirService.saveJoyMemoir(createJoyMemoirRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(JoyMemoirId);
     }
 
     @GetMapping("/{joyMemoirId}")
-    public JoyMemoirResponseDto getJoyMemoir(@PathVariable Long joyMemoirId) {
-        return joyMemoirService.getJoyMemoir(joyMemoirId);
+    public JoyMemoirResponseDto getJoyMemoir(@PathVariable Long joyMemoirId, Long userId) {
+        return joyMemoirService.getJoyMemoir(joyMemoirId, userId);
     }
 
     @GetMapping("")
