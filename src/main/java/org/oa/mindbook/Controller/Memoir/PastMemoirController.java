@@ -3,9 +3,12 @@ package org.oa.mindbook.Controller.Memoir;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Dto.request.Memoir.CreatePastMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.PastMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.PastMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.PastMemoirService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -31,5 +34,10 @@ public class PastMemoirController {
     @GetMapping("/{pastMemoirId}")
     public PastMemoirResponseDto getPastMemoir(@PathVariable Long pastMemoirId) {
         return pastMemoirService.getPastMemoir(pastMemoirId);
+    }
+
+    @GetMapping("")
+    public List<PastMemoirListResponseDto> getSadMemoirList(@RequestParam String status) {
+        return pastMemoirService.getPastMemoirList(status);
     }
 }

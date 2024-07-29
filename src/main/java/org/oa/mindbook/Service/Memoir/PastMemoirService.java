@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.PastMemoir;
 import org.oa.mindbook.Dto.request.Memoir.CreatePastMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.PastMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.PastMemoirResponseDto;
 import org.oa.mindbook.Dto.response.MemoirComment.PastMemoirCommentResponseDto;
 import org.oa.mindbook.Repository.Memoir.PastMemoirRepository;
@@ -45,5 +46,16 @@ public class PastMemoirService {
         ).collect(Collectors.toList());
 
         return  PastMemoirResponseDto.of(pastMemoir, commentList);
+    }
+
+    @Transactional
+    public List<PastMemoirListResponseDto> getPastMemoirList(String status) {
+        List<PastMemoir> pastMemoir = pastMemoirRepository.findByStatus(status);
+
+        List<PastMemoirListResponseDto> responseDtoList = pastMemoir.stream()
+                .map(PastMemoirListResponseDto::of)
+                .collect(Collectors.toList());
+
+        return responseDtoList;
     }
 }
