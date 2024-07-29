@@ -18,7 +18,11 @@ import java.util.List;
 @Builder
 public class JoyMemoirResponseDto {
 
+    private Long userId;
+
     private Long joyMemoirId;
+
+    private String nickName;
 
     private String createdAt;
 
@@ -30,17 +34,16 @@ public class JoyMemoirResponseDto {
 
     private List<JoyMemoirCommentResponseDto> commentList;
 
-    private Long userId;
-
     public static JoyMemoirResponseDto of(JoyMemoir joyMemoir, List<JoyMemoirCommentResponseDto> commentList, User user) {
         return JoyMemoirResponseDto.builder()
+                .userId(user.getId())
                 .joyMemoirId(joyMemoir.getJoyMemoirId())
+                .nickName(user.getNickName())
                 .createdAt(joyMemoir.getCreatedAt())
                 .memory(joyMemoir.getMemory())
                 .impression(joyMemoir.getImpression())
                 .status(joyMemoir.getStatus())
                 .commentList(commentList)
-                .userId(user.getId())
                 .build();
     }
 

@@ -30,8 +30,8 @@ public class JoyMemoirController {
         return ResponseEntity.status(HttpStatus.CREATED).body(JoyMemoirId);
     }
 
-    @GetMapping("/{joyMemoirId}")
-    public JoyMemoirResponseDto getJoyMemoir(@PathVariable Long joyMemoirId, Long userId) {
+    @GetMapping("/detail")
+    public JoyMemoirResponseDto getJoyMemoir(@RequestParam Long userId, @RequestParam Long joyMemoirId) {
         return joyMemoirService.getJoyMemoir(joyMemoirId, userId);
     }
 

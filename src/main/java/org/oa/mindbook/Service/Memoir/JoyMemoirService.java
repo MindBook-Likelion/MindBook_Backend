@@ -49,7 +49,7 @@ public class JoyMemoirService {
                 comment -> {
                     return JoyMemoirCommentResponseDto.builder()
                             .joyMemoirCommentId(comment.getJoyMemoirCommentId())
-                            .nickname(comment.getUser().getUserId())
+                            .nickname(comment.getUser().getNickName())
                             .content(comment.getContent())
                             .createdAt(comment.getCreatedAt())
                             .build();
