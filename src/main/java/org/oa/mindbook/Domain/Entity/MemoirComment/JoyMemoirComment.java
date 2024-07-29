@@ -23,7 +23,7 @@ public class JoyMemoirComment extends BaseTimeEntity {
     private Long joyMemoirCommentId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
