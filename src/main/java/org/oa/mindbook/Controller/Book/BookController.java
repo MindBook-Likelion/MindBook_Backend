@@ -24,7 +24,14 @@ public class BookController {
             Long bookId = bookService.save(bookReqDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(bookId);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(-1L);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
+    }
+
+    @GetMapping("/myBook/{userId}")
+    List<BookResDto> getBookList(@PathVariable Long userId) {
+        List<BookResDto> bookResDto = bookService.findAllByUserId(userId);
+
+        return bookResDto
     }
 }
