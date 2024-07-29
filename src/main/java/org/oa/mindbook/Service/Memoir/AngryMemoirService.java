@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.AngryMemoir;
 import org.oa.mindbook.Dto.request.Memoir.CreateAngryMemoirRequestDto;
+import org.oa.mindbook.Dto.response.Memoir.AngryMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.AngryMemoirResponseDto;
 import org.oa.mindbook.Dto.response.MemoirComment.AngryMemoirCommentResponseDto;
 import org.oa.mindbook.Repository.Memoir.AngryMemoirRepository;
@@ -44,5 +45,16 @@ public class AngryMemoirService {
         ).collect(Collectors.toList());
 
         return AngryMemoirResponseDto.of(angryMemoir, commentList);
+    }
+
+    @Transactional
+    public List<AngryMemoirListResponseDto> getAngryMemoirList(String status) {
+        List<AngryMemoir> angryMemoir = angryMemoirRepository.findByStatus(status);
+
+        List<AngryMemoirListResponseDto> responseDtoList = angryMemoir.stream()
+                .map(AngryMemoirListResponseDto::of)
+                .collect(Collectors.toList());
+
+        return responseDtoList;
     }
 }
