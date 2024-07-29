@@ -10,6 +10,7 @@ import org.oa.mindbook.Domain.Entity.Book.Book;
 @Setter
 @NoArgsConstructor
 public class BookResDto {
+    private Long id;
     private String title;
     private String author;
     private String publisher;
@@ -19,6 +20,7 @@ public class BookResDto {
     private String image;
 
     public BookResDto(Book book) {
+        this.id = book.getId();
         this.title = book.getTitle();
         this.author = book.getAuthor();
         this.publisher = book.getPublisher();

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -55,5 +56,18 @@ public class BookServiceImpl implements BookService {
         return bookResDtoList;
     }
 
+    @Override
+    public boolean existsByUserIdAndTitle(Long userId, String title) {
+        return bookRepository.findByUserIdAndTitle(userId, title).isPresent();
+    }
 
+    @Override
+    public Optional<Book> findByUserIdAndTitle(Long userId, String title) {
+        return bookRepository.findByUserIdAndTitle(userId, title);
+    }
+
+    @Override
+    public List<Book> findByUserIdAndTitleIgnoreSpaces(Long userId, String title) {
+        return bookRepository.findByUserIdAndTitleIgnoreSpaces(userId, title.replaceAll("\\s+", ""));
+    }
 }
