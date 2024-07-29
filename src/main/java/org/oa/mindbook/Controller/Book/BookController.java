@@ -32,6 +32,6 @@ public class BookController {
     List<BookResDto> getBookList(@PathVariable Long userId) {
         List<BookResDto> bookResDto = bookService.findAllByUserId(userId);
 
-        return bookResDto
+        return bookResDto;
     }
 }
