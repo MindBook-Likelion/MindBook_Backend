@@ -27,4 +27,11 @@ public class JoyMemoirCommentService {
                 .content(dto.getContent())
                 .build());
     }
+
+    @Transactional
+    public void deleteJoyMemoirComment(Long joyMemoirCommentId) {
+        JoyMemoirComment joyMemoirComment = joyMemoirCommentRepository.findById(joyMemoirCommentId).orElseThrow();
+
+        joyMemoirCommentRepository.deleteById(joyMemoirComment.getJoyMemoirCommentId());
+    }
 }
