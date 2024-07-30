@@ -20,13 +20,4 @@ public class CreatePastMemoirRequestDto {
 
     private String status;
 
-    public PastMemoir toEntity() {
-        return PastMemoir.builder()
-                .userId(userId)
-                .pastAt(pastAt)
-                .memory(memory)
-                .impression(impression)
-                .status(status)
-                .build();
-    }
 }

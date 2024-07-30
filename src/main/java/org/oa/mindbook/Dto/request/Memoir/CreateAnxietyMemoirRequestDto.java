@@ -18,12 +18,4 @@ public class CreateAnxietyMemoirRequestDto {
 
     private String status;
 
-    public AnxietyMemoir toEntity() {
-        return AnxietyMemoir.builder()
-                .userId(userId)
-                .memory(memory)
-                .impression(impression)
-                .status(status)
-                .build();
-    }
 }

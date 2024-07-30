@@ -36,8 +36,8 @@ public class JoyMemoirController {
     }
 
     @GetMapping("")
-    public List<JoyMemoirListResponseDto> getJoyMemoirList(@RequestParam String status) {
-        return joyMemoirService.getJoyMemoirList(status);
+    public List<JoyMemoirListResponseDto> getJoyMemoirList(@RequestParam String status, @RequestParam Long userId) {
+        return joyMemoirService.getJoyMemoirList(status, userId);
     }
 
 

@@ -18,12 +18,4 @@ public class CreateAngryMemoirRequestDto {
 
     private String status;
 
-    public AngryMemoir toEntity() {
-        return AngryMemoir.builder()
-                .userId(userId)
-                .memory(memory)
-                .impression(impression)
-                .status(status)
-                .build();
-    }
 }

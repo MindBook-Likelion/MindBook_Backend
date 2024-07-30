@@ -60,13 +60,21 @@ public class JoyMemoirService {
     }
 
     @Transactional
-    public List<JoyMemoirListResponseDto> getJoyMemoirList(String status) {
-        List<JoyMemoir> joyMemoir = joyMemoirRepository.findByStatus(status);
+    public List<JoyMemoirListResponseDto> getJoyMemoirList(String status, Long userId) {
+        List<JoyMemoir> joyMemoirList = joyMemoirRepository.findByStatus(status);
+        User user = userRepository.findById(userId).orElseThrow();
 
-        List<JoyMemoirListResponseDto> responseDtoList = joyMemoir.stream()
-                .map(JoyMemoirListResponseDto::of)
-                .collect(Collectors.toList());
+        List<JoyMemoirListResponseDto> responseDtoList = joyMemoirList.stream().map(
+                 joyMemoir -> {
+                     return JoyMemoirListResponseDto.builder()
+                         .joyMemoirId(joyMemoir.getJoyMemoirId())
+                         .nickName(joyMemoir.getUser().getNickName())
+                         .createdAt(joyMemoir.getCreatedAt())
+                         .status(joyMemoir.getStatus())
+                         .build();
+                 }
+        ).collect(Collectors.toList());
 
-        return responseDtoList;
+    return responseDtoList;
     }
 }

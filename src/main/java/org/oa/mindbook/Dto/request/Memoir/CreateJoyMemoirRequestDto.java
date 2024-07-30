@@ -17,12 +17,4 @@ public class CreateJoyMemoirRequestDto {
 
     private String status;
 
-//    public JoyMemoir toEntity() {
-//        return JoyMemoir.builder()
-//                .userId(userId)
-//                .memory(memory)
-//                .impression(impression)
-//                .status(status)
-//                .build();
-//    }
 }
