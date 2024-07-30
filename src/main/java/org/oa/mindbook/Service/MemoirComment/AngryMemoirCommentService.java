@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.AngryMemoir;
 import org.oa.mindbook.Domain.Entity.MemoirComment.AngryMemoirComment;
+import org.oa.mindbook.Domain.Entity.MemoirComment.AnnoyMemoirComment;
 import org.oa.mindbook.Domain.Entity.User;
 import org.oa.mindbook.Dto.request.MemoirComment.CreateAngryMemoirCommentRequestDto;
 import org.oa.mindbook.Repository.Memoir.AngryMemoirRepository;
@@ -31,5 +32,12 @@ public class AngryMemoirCommentService {
                 .angryMemoir(angryMemoir)
                 .content(dto.getContent())
                 .build());
+    }
+
+    @Transactional
+    public void deleteAngryMemoirComment(Long angryMemoirCommentId) {
+       AngryMemoirComment angryMemoirComment = angryMemoirCommentRepository.findById(angryMemoirCommentId).orElseThrow();
+
+        angryMemoirCommentRepository.deleteById(angryMemoirComment.getAngryMemoirCommentId());
     }
 }

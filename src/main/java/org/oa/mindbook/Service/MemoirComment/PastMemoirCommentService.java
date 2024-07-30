@@ -31,4 +31,11 @@ public class PastMemoirCommentService {
                 .content(dto.getContent())
                 .build());
     }
+
+    @Transactional
+    public void deletePastMemoirComment(Long pastMemoirCommentId) {
+        PastMemoirComment pastMemoirComment = pastMemoirCommentRepository.findById(pastMemoirCommentId).orElseThrow();
+
+        pastMemoirCommentRepository.deleteById(pastMemoirComment.getPastMemoirCommentId());
+    }
 }
