@@ -31,7 +31,7 @@ public class PastMemoirController {
         return ResponseEntity.status(HttpStatus.CREATED).body(PastMemoirId);
     }
 
-    @GetMapping("/{pastMemoirId}")
+    @GetMapping("/detail")
     public PastMemoirResponseDto getPastMemoir(@RequestParam Long userId, @RequestParam Long pastMemoirId) {
         return pastMemoirService.getPastMemoir(pastMemoirId, userId);
     }
