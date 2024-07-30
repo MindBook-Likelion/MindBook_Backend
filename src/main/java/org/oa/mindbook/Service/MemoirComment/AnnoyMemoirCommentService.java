@@ -33,4 +33,11 @@ public class AnnoyMemoirCommentService {
                 .build());
 
     }
+
+    @Transactional
+    public void deleteAnnoyMemoirComment(Long annoyMemoirCommentId) {
+        AnnoyMemoirComment annoyMemoirComment = annoyMemoirCommentRepository.findById(annoyMemoirCommentId).orElseThrow();
+
+        annoyMemoirCommentRepository.deleteById(annoyMemoirComment.getAnnoyMemoirCommentId());
+    }
 }
