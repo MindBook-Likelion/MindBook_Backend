@@ -32,4 +32,11 @@ public class SadMemoirCommentService {
                 .content(dto.getContent())
                 .build());
     }
+
+    @Transactional
+    public void deleteSadMemoirComment(Long sadMemoirCommentId) {
+        SadMemoirComment sadMemoirComment = sadMemoirCommentRepository.findById(sadMemoirCommentId).orElseThrow();
+
+        sadMemoirCommentRepository.deleteById(sadMemoirComment.getSadMemoirCommentId());
+    }
 }
