@@ -18,12 +18,4 @@ public class CreateAnnoyMemoirRequestDto {
 
     private String status;
 
-    public AnnoyMemoir toEntity() {
-        return AnnoyMemoir.builder()
-                .userId(userId)
-                .memory(memory)
-                .impression(impression)
-                .status(status)
-                .build();
-    }
 }

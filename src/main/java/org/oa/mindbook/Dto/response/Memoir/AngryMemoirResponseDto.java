@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.Entity.Memoir.AngryMemoir;
+import org.oa.mindbook.Domain.Entity.User;
 import org.oa.mindbook.Dto.response.MemoirComment.AngryMemoirCommentResponseDto;
 
 import java.util.List;
@@ -15,9 +16,11 @@ import java.util.List;
 @Builder
 public class AngryMemoirResponseDto {
 
+    private Long userId;
+
     private Long angryMemoirId;
 
-    private Long userId;
+    private String nickName;
 
     private String createdAt;
 
@@ -29,10 +32,11 @@ public class AngryMemoirResponseDto {
 
     private List<AngryMemoirCommentResponseDto> commentList;
 
-    public static AngryMemoirResponseDto of(AngryMemoir angryMemoir, List<AngryMemoirCommentResponseDto> commentList) {
+    public static AngryMemoirResponseDto of(AngryMemoir angryMemoir, List<AngryMemoirCommentResponseDto> commentList, User user) {
         return AngryMemoirResponseDto.builder()
+                .userId(user.getId())
                 .angryMemoirId(angryMemoir.getAngryMemoirId())
-                .userId(angryMemoir.getUserId())
+                .nickName(user.getNickName())
                 .createdAt(angryMemoir.getCreatedAt())
                 .memory(angryMemoir.getMemory())
                 .impression(angryMemoir.getImpression())

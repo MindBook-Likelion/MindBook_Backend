@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.Entity.Memoir.PastMemoir;
+import org.oa.mindbook.Domain.Entity.User;
 
 @Builder
 @Getter
@@ -14,15 +15,16 @@ public class PastMemoirListResponseDto {
 
     private Long pastMemoirId;
 
+    private String nickName;
+
     private String createdAt;
 
     private String status;
 
-    public static PastMemoirListResponseDto of(PastMemoir pastMemoir) {
-        return PastMemoirListResponseDto.builder()
-                .pastMemoirId(pastMemoir.getPastMemoirId())
-                .createdAt(pastMemoir.getCreatedAt())
-                .status(pastMemoir.getCreatedAt())
-                .build();
+    public PastMemoirListResponseDto (PastMemoir pastMemoir, User user) {
+        this.pastMemoirId = pastMemoir.getPastMemoirId();
+        this.nickName = user.getNickName();
+        this.createdAt = pastMemoir.getCreatedAt();
+        this.status = pastMemoir.getStatus();
     }
 }

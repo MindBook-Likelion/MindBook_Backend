@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.Entity.Memoir.AnxietyMemoir;
+import org.oa.mindbook.Domain.Entity.User;
 
 @Builder
 @Getter
@@ -14,15 +15,16 @@ public class AnxietyMemoirListResponseDto {
 
     private Long anxietyMemoirId;
 
+    private String nickName;
+
     private String createdAt;
 
     private String status;
 
-    public static AnxietyMemoirListResponseDto of(AnxietyMemoir anxietyMemoir) {
-        return AnxietyMemoirListResponseDto.builder()
-                .anxietyMemoirId(anxietyMemoir.getAnxietyMemoirId())
-                .createdAt(anxietyMemoir.getCreatedAt())
-                .status(anxietyMemoir.getStatus())
-                .build();
+    public AnxietyMemoirListResponseDto (AnxietyMemoir anxietyMemoir, User user) {
+        this.anxietyMemoirId = anxietyMemoir.getAnxietyMemoirId();
+        this.nickName = user.getNickName();
+        this.createdAt = anxietyMemoir.getCreatedAt();
+        this.status = anxietyMemoir.getStatus();
     }
 }

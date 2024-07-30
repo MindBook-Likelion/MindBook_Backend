@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.BaseTimeEntity;
+import org.oa.mindbook.Domain.Entity.User;
 
 @Entity
 @Getter
@@ -15,7 +16,9 @@ public class SadMemoir extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sadMemoirId;
 
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", nullable = false)
+    private User user;
 
     @Column(columnDefinition = "TEXT")
     private String memory;
@@ -26,8 +29,8 @@ public class SadMemoir extends BaseTimeEntity {
     private String status;
 
     @Builder
-    public SadMemoir(Long userId, String memory, String impression, String status) {
-        this.userId = userId;
+    public SadMemoir(User user, String memory, String impression, String status) {
+        this.user = user;
         this.memory = memory;
         this.impression = impression;
         this.status = status;

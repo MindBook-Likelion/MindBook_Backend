@@ -18,12 +18,4 @@ public class CreateSadMemoirRequestDto {
 
     private String status;
 
-    public SadMemoir toEntity() {
-        return SadMemoir.builder()
-                .userId(userId)
-                .memory(memory)
-                .impression(impression)
-                .status(status)
-                .build();
-    }
 }
