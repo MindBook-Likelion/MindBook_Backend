@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.BaseTimeEntity;
 import org.oa.mindbook.Domain.Entity.User;
 
-import javax.management.monitor.StringMonitor;
 
 @Entity
 @Getter

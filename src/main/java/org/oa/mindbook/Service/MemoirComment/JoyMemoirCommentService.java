@@ -12,6 +12,8 @@ import org.oa.mindbook.Repository.MemoirComment.JoyMemoirCommentRepository;
 import org.oa.mindbook.Repository.User.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -39,4 +41,10 @@ public class JoyMemoirCommentService {
 
         joyMemoirCommentRepository.deleteById(joyMemoirComment.getJoyMemoirCommentId());
     }
+
+    @Transactional
+    public List<JoyMemoirComment> getCommentsByJoyMemoirId(Long joyMemoirId) {
+        return joyMemoirCommentRepository.findByJoyMemoirId(joyMemoirId);
+    }
+
 }
