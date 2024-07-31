@@ -2,9 +2,13 @@ package org.oa.mindbook.Controller.MemoirComment;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.oa.mindbook.Domain.Entity.MemoirComment.PastMemoirComment;
 import org.oa.mindbook.Dto.request.MemoirComment.CreatePastMemoirCommentRequestDto;
 import org.oa.mindbook.Service.MemoirComment.PastMemoirCommentService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -27,5 +31,11 @@ public class PastMemoirCommentController {
         pastMemoirCommentService.deletePastMemoirComment(pastMemoirCommentId);
 
         return "추억 회고록 댓글이 삭제되었습니다.";
+    }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> countByPastMemoirId(@RequestParam Long pastMemoirId) {
+        List<PastMemoirComment> comments = pastMemoirCommentService.getCommentsByPastMemoirId(pastMemoirId);
+        return ResponseEntity.ok((long) comments.size());
     }
 }

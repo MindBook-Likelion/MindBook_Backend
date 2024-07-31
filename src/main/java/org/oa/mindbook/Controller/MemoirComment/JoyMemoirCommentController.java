@@ -37,7 +37,7 @@ public class JoyMemoirCommentController {
     @GetMapping("/count")
     public ResponseEntity<Long> countByJoyMemoirId(@RequestParam Long joyMemoirId) {
         List<JoyMemoirComment> comments = joyMemoirCommentService.getCommentsByJoyMemoirId(joyMemoirId);
-        return  ResponseEntity.ok((long) comments.size());
+        return ResponseEntity.ok((long) comments.size());
 
     }
 }
