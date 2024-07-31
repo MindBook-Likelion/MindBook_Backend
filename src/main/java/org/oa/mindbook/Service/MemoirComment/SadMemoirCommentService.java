@@ -12,6 +12,8 @@ import org.oa.mindbook.Repository.MemoirComment.SadMemoirCommentRepository;
 import org.oa.mindbook.Repository.User.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -38,5 +40,10 @@ public class SadMemoirCommentService {
         SadMemoirComment sadMemoirComment = sadMemoirCommentRepository.findById(sadMemoirCommentId).orElseThrow();
 
         sadMemoirCommentRepository.deleteById(sadMemoirComment.getSadMemoirCommentId());
+    }
+
+    @Transactional
+    public List<SadMemoirComment> getCommentsBySadMemoirId(Long sadMemoirId) {
+        return sadMemoirCommentRepository.findBySadMemoirId(sadMemoirId);
     }
 }

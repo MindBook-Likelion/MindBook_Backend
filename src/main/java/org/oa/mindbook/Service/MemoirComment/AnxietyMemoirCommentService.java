@@ -11,6 +11,7 @@ import org.oa.mindbook.Repository.Memoir.AnxietyMemoirRepository;
 import org.oa.mindbook.Repository.MemoirComment.AnxietyMemoirCommentRepository;
 import org.oa.mindbook.Repository.User.UserRepository;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -40,5 +41,10 @@ public class AnxietyMemoirCommentService {
         AnxietyMemoirComment anxietyMemoirComment = anxietyMemoirCommentRepository.findById(anxietyMemoirCommentId).orElseThrow();
 
         anxietyMemoirCommentRepository.deleteById(anxietyMemoirComment.getAnxietyMemoirCommentId());
+    }
+
+    @Transactional
+    public List<AnxietyMemoirComment> getCommentsByAnxietyMemoirId(Long anxietyMemoirId) {
+        return anxietyMemoirCommentRepository.findByAnxietyMemoirId(anxietyMemoirId);
     }
 }
