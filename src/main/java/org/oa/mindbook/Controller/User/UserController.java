@@ -5,10 +5,7 @@ import org.oa.mindbook.Dto.request.User.UserReqDto;
 import org.oa.mindbook.Service.User.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -18,7 +15,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/register")
-    ResponseEntity<?> savedUser(@RequestBody UserReqDto userReqDto) {
+    public ResponseEntity<?> savedUser(@RequestBody UserReqDto userReqDto) {
         try {
             Long userId = userService.save(userReqDto);
             return ResponseEntity.status(HttpStatus.CREATED).body(userId);
