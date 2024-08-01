@@ -1,5 +1,7 @@
 package org.oa.mindbook.Controller.Memoir;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Dto.request.Memoir.CreateAngryMemoirRequestDto;
@@ -16,10 +18,12 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/angryMemoir")
+@Tag(name = "화남 회고록 API", description = "화남 회고록 관련 API입니다.")
 public class AngryMemoirController {
 
     private final AngryMemoirService angryMemoirService;
 
+    @Operation(method = "POST", summary = "화남 회고록 작성")
     @PostMapping("")
     public ResponseEntity<?> createAngryMemoir(@RequestBody CreateAngryMemoirRequestDto createAngryMemoirRequestDto) {
         log.info("오늘 있었던 일: {}", createAngryMemoirRequestDto.getMemory());
@@ -30,11 +34,13 @@ public class AngryMemoirController {
         return ResponseEntity.status(HttpStatus.CREATED).body(AngryMemoirId);
     }
 
+    @Operation(method = "GET", summary = "화남 회고록 상세 조회")
     @GetMapping("/detail")
     public AngryMemoirResponseDto getAngryMemoir(@RequestParam Long userId, @RequestParam Long angryMemoirId) {
         return angryMemoirService.getAngryMemoir(angryMemoirId, userId);
     }
 
+    @Operation(method = "GET", summary = "화남 회고록 목록 작성")
     @GetMapping("")
     public List<AngryMemoirListResponseDto> getAngryMemoirList(@RequestParam String status, @RequestParam Long userId) {
         return angryMemoirService.getAngryMemoirList(status, userId);
