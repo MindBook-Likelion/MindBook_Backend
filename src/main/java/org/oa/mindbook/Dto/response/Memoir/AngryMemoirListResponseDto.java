@@ -4,16 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.oa.mindbook.Domain.Entity.Memoir.AnxietyMemoir;
+import org.oa.mindbook.Domain.Entity.Memoir.AngryMemoir;
 import org.oa.mindbook.Domain.Entity.User;
 
 @Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnxietyMemoirListResponseDto {
+public class AngryMemoirListResponseDto {
 
-    private Long anxietyMemoirId;
+    private Long angryMemoirId;
 
     private String nickName;
 
@@ -21,10 +21,10 @@ public class AnxietyMemoirListResponseDto {
 
     private String status;
 
-    public AnxietyMemoirListResponseDto (AnxietyMemoir anxietyMemoir, User user) {
-        this.anxietyMemoirId = anxietyMemoir.getAnxietyMemoirId();
+    public AngryMemoirListResponseDto (AngryMemoir angryMemoir, User user) {
+        this.angryMemoirId = angryMemoir.getAngryMemoirId();
         this.nickName = user.getNickName();
-        this.createdAt = anxietyMemoir.getCreatedAt();
-        this.status = anxietyMemoir.getStatus();
+        this.createdAt = angryMemoir.getCreatedAt();
+        this.status = angryMemoir.getStatus();
     }
 }

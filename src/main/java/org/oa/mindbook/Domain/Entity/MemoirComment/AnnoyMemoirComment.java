@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.BaseTimeEntity;
 import org.oa.mindbook.Domain.Entity.Memoir.AnnoyMemoir;
+import org.oa.mindbook.Domain.Entity.User;
 
 @Entity
 @Getter
@@ -20,9 +21,11 @@ public class AnnoyMemoirComment extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long annoyMemoirCommentId;
 
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "annoyMemoirId", nullable = false)
     private AnnoyMemoir annoyMemoir;
 

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.Entity.Memoir.PastMemoir;
+import org.oa.mindbook.Domain.Entity.User;
 import org.oa.mindbook.Dto.response.MemoirComment.PastMemoirCommentResponseDto;
 
 import java.util.List;
@@ -15,9 +16,11 @@ import java.util.List;
 @Builder
 public class PastMemoirResponseDto {
 
+    private Long userId;
+
     private Long pastMemoirId;
 
-    private Long userId;
+    private String nickName;
 
     private String createdAt;
 
@@ -31,10 +34,11 @@ public class PastMemoirResponseDto {
 
     private List<PastMemoirCommentResponseDto> commentList;
 
-    public static PastMemoirResponseDto of(PastMemoir pastMemoir, List<PastMemoirCommentResponseDto> commentList) {
+    public static PastMemoirResponseDto of(PastMemoir pastMemoir, List<PastMemoirCommentResponseDto> commentList, User user) {
         return PastMemoirResponseDto.builder()
+                .userId(user.getId())
                 .pastMemoirId(pastMemoir.getPastMemoirId())
-                .userId(pastMemoir.getUserId())
+                .nickName(user.getNickName())
                 .createdAt(pastMemoir.getCreatedAt())
                 .pastAt(pastMemoir.getPastAt())
                 .memory(pastMemoir.getMemory())

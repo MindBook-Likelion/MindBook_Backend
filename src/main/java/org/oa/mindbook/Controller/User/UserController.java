@@ -1,5 +1,7 @@
 package org.oa.mindbook.Controller.User;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Dto.request.User.CreateUserRequestDto;
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user") // uri가 /user로 시작하는 요청을 받습니다.
+@Tag(name = "유저 API", description = "유저 API입니다.")
 public class UserController {
 
     private final UserService userService;
 
+    @Operation(method = "POST", summary = "유저 생성")
     @PostMapping("/register")
     public ResponseEntity<?> createUser(@RequestBody CreateUserRequestDto createUserRequestDto) {
         UserResponseDto responseDto = userService.createUser(createUserRequestDto);

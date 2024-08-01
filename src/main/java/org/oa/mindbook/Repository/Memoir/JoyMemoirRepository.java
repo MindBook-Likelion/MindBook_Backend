@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface JoyMemoirRepository extends JpaRepository<JoyMemoir, Long> {
+
     List<JoyMemoir> findByStatus(String status);
 }

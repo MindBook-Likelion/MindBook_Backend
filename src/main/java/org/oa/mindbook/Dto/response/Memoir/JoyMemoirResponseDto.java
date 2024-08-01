@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.JoyMemoir;
+import org.oa.mindbook.Domain.Entity.User;
 import org.oa.mindbook.Dto.response.MemoirComment.JoyMemoirCommentResponseDto;
 
 import java.util.List;
@@ -17,9 +18,11 @@ import java.util.List;
 @Builder
 public class JoyMemoirResponseDto {
 
+    private Long userId;
+
     private Long joyMemoirId;
 
-    private Long userId;
+    private String nickName;
 
     private String createdAt;
 
@@ -31,10 +34,11 @@ public class JoyMemoirResponseDto {
 
     private List<JoyMemoirCommentResponseDto> commentList;
 
-    public static JoyMemoirResponseDto of(JoyMemoir joyMemoir, List<JoyMemoirCommentResponseDto> commentList) {
+    public static JoyMemoirResponseDto of(JoyMemoir joyMemoir, List<JoyMemoirCommentResponseDto> commentList, User user) {
         return JoyMemoirResponseDto.builder()
+                .userId(user.getId())
                 .joyMemoirId(joyMemoir.getJoyMemoirId())
-                .userId(joyMemoir.getUserId())
+                .nickName(user.getNickName())
                 .createdAt(joyMemoir.getCreatedAt())
                 .memory(joyMemoir.getMemory())
                 .impression(joyMemoir.getImpression())

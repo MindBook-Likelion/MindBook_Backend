@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.oa.mindbook.Domain.Entity.MemoirComment.PastMemoirComment;
+import org.oa.mindbook.Domain.Entity.User;
 
 @Builder
 @Getter
@@ -18,4 +20,11 @@ public class PastMemoirCommentResponseDto {
     private String content;
 
     private String createdAt;
+
+    public PastMemoirCommentResponseDto(PastMemoirComment pastMemoirComment, User user) {
+        this.pastMemoirCommentId = pastMemoirComment.getPastMemoirCommentId();
+        this.nickname = user.getNickName();
+        this.content = pastMemoirComment.getContent();
+        this.createdAt = pastMemoirComment.getCreatedAt();
+    }
 }
