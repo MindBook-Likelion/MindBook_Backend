@@ -1,5 +1,7 @@
 package org.oa.mindbook.Controller.Book;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.oa.mindbook.Domain.Entity.Book.Book;
 import org.oa.mindbook.Dto.request.Book.BookReqDto;
@@ -17,10 +19,12 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("")
 @RequiredArgsConstructor
+@Tag(name = "책 API", description = "책 API입니다.")
 public class BookController {
 
     private final BookService bookService;
 
+    @Operation(method = "POST", summary = "책 추가")
     @PostMapping("/addBook")
     public ResponseEntity<?> saveBook(@RequestBody BookReqDto bookReqDto) {
         try {
@@ -37,6 +41,7 @@ public class BookController {
         }
     }
 
+    @Operation(method = "GET", summary = "책장 조회")
     @GetMapping("/myBook")
     List<BookResDto> getBookList(@RequestParam Long userId) {
         List<BookResDto> bookResDto = bookService.findAllByUserId(userId);
@@ -44,6 +49,7 @@ public class BookController {
         return bookResDto;
     }
 
+    @Operation(method = "GET", summary = "책장에 있는 책 검색")
     @GetMapping("/myBook/search")
     public ResponseEntity<?> searchBook(@RequestParam Long userId, @RequestParam String title) {
         List<Book> books = bookService.findByUserIdAndTitleIgnoreSpaces(userId, title);

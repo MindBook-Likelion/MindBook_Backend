@@ -1,5 +1,7 @@
 package org.oa.mindbook.Controller.Book;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.oa.mindbook.Dto.request.Book.BookReportReqDto;
 import org.oa.mindbook.Dto.response.Book.BookReportResDto;
@@ -11,15 +13,18 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("")
 @RequiredArgsConstructor
+@Tag(name = "독후감 API", description = "독후감 API입니다.")
 public class BookReportController {
     private final BookReportService bookReportService;
 
+    @Operation(method = "POST", summary = "독후감 작성")
     @PostMapping("/bookReport")
     public ResponseEntity<?> saveReport(@RequestBody BookReportReqDto bookReportReqDto) {
         Long bookReportId = bookReportService.save(bookReportReqDto);
         return ResponseEntity.status(HttpStatus.CREATED).body("독후감 ID: " + bookReportId);
     }
 
+    @Operation(method = "GET", summary = "독후감 상세 조회")
     @GetMapping("/bookReport")
     public ResponseEntity<?> getReport(@RequestParam Long reportId) {
         try {
@@ -32,6 +37,7 @@ public class BookReportController {
         }
     }
 
+    @Operation(method = "DELETE", summary = "독후감 삭제")
     @DeleteMapping("/bookReport")
     public ResponseEntity<?> deleteReport(@RequestParam Long reportId) {
         try {

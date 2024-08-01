@@ -1,5 +1,7 @@
 package org.oa.mindbook.Controller.Memoir;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Dto.request.Memoir.CreatePastMemoirRequestDto;
@@ -16,10 +18,12 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/pastMemoir")
+@Tag(name = "추억 회고록 API", description = "추억 회고록 관련 API입니다.")
 public class PastMemoirController {
 
     private final PastMemoirService pastMemoirService;
 
+    @Operation(method = "POST", summary = "추억 회고록 작성")
     @PostMapping("")
     public ResponseEntity<?> createPastMemoir(@RequestBody CreatePastMemoirRequestDto createPastMemoirRequestDto) {
         log.info("추억하고 싶은 날짜: {}", createPastMemoirRequestDto.getPastAt());
@@ -31,11 +35,13 @@ public class PastMemoirController {
         return ResponseEntity.status(HttpStatus.CREATED).body(PastMemoirId);
     }
 
+    @Operation(method = "GET", summary = "추억 회고록 상세 조회")
     @GetMapping("/detail")
     public PastMemoirResponseDto getPastMemoir(@RequestParam Long userId, @RequestParam Long pastMemoirId) {
         return pastMemoirService.getPastMemoir(pastMemoirId, userId);
     }
 
+    @Operation(method = "GET", summary = "추억 회고록 목록 작성")
     @GetMapping("")
     public List<PastMemoirListResponseDto> getSadMemoirList(@RequestParam String status, @RequestParam Long userId) {
         return pastMemoirService.getPastMemoirList(status, userId);
