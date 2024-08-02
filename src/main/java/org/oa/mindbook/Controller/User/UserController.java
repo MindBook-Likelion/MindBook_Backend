@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.oa.mindbook.Domain.Entity.User.User;
 import org.oa.mindbook.Dto.request.User.CreateUserRequestDto;
 import org.oa.mindbook.Dto.request.User.UpdateUserRequestDto;
 import org.oa.mindbook.Dto.response.User.UserResponseDto;
@@ -14,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -35,20 +37,20 @@ public class UserController {
     }
 
     // 유저 정보 조회
-    @GetMapping("")
+    @GetMapping("/info")
     public ResponseEntity<?> getUser(@AuthenticationPrincipal UserDetails userDetails) {
         return ResponseEntity.ok(userService.getUser(userDetails.getUsername()));
     }
 
     // 비밀번호 변경
-    @PutMapping("")
+    @PutMapping("/update")
     public ResponseEntity<?> updateUser(@AuthenticationPrincipal UserDetails userDetails, @RequestBody UpdateUserRequestDto userUpdateRequestDto) {
         UserResponseDto responseDto = userService.updateUser(userDetails.getUsername(), userUpdateRequestDto);
         return ResponseEntity.ok(responseDto);
     }
 
     // 탈퇴
-    @DeleteMapping("")
+    @DeleteMapping("/withdraw")
     public ResponseEntity<?> deleteUser(@AuthenticationPrincipal UserDetails userDetails) {
         userService.deleteUser(userDetails.getUsername());
         return ResponseEntity.noContent().build();
@@ -64,6 +66,18 @@ public class UserController {
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // 가입한 날짜 조회
+    @GetMapping("/createdAt")
+    public ResponseEntity<?> getCreatedAt(@AuthenticationPrincipal UserDetails userDetails) {
+        String email = userDetails.getUsername(); // 이메일을 가져옴
+        try {
+            String message = userService.getDaysSinceJoinedByEmail(email); // 서비스 메서드를 호출하여 이메일로 닉네임을 조회
+            return ResponseEntity.ok(message);
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
 }
