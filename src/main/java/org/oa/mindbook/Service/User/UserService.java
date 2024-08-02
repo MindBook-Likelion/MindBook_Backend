@@ -7,10 +7,15 @@ import org.oa.mindbook.Dto.request.User.CreateUserRequestDto;
 import org.oa.mindbook.Dto.request.User.UpdateUserRequestDto;
 import org.oa.mindbook.Dto.response.User.UserResponseDto;
 import org.oa.mindbook.Repository.User.UserRepository;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Slf4j
@@ -53,5 +58,24 @@ public class UserService {
     @Transactional
     public void deleteUser(String email) {
         userRepository.deleteByEmail(email);
+    }
+
+    public String getDaysSinceJoinedByEmail(String email) {
+        // 이메일로 사용자 조회
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("사용자가 존재하지 않습니다."));
+
+        // 닉네임을 가져옴
+        String nickName = user.getNickName();
+
+        // LocalDate로 변환
+        String createdAtStr = user.getCreatedAt(); // 예를 들어 '2024.08.03'
+        LocalDate createdAt = LocalDate.parse(createdAtStr, DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+
+        // 현재 날짜와의 차이 계산
+        long daysSinceJoined = Duration.between(createdAt.atStartOfDay(), LocalDate.now().atStartOfDay()).toDays();
+
+
+        return String.format("%s님이 마음책방에 오신지 %d일 되었어요! 😀", nickName, daysSinceJoined);
     }
 }
