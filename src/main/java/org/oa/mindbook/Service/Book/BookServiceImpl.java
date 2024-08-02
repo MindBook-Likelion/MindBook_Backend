@@ -3,7 +3,7 @@ package org.oa.mindbook.Service.Book;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Book.Book;
-import org.oa.mindbook.Domain.Entity.User;
+import org.oa.mindbook.Domain.Entity.User.User;
 import org.oa.mindbook.Dto.request.Book.BookReqDto;
 import org.oa.mindbook.Dto.response.Book.BookResDto;
 import org.oa.mindbook.Repository.Book.BookRepository;

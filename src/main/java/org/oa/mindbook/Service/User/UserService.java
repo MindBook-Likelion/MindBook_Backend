@@ -37,12 +37,19 @@ public class UserService {
     }
     @Transactional
     public UserResponseDto updateUser(String email, UpdateUserRequestDto userRequestDto) {
-        User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("사용자가 존재하지 않습니다."));
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("사용자가 존재하지 않습니다."));
+
+        if (userRequestDto.getPassword() != null && !userRequestDto.getPassword().isEmpty()) {
+            String encodedPassword = passwordEncoder.encode(userRequestDto.getPassword());
+            userRequestDto.setPassword(encodedPassword);
+        }
+
         user.update(userRequestDto);
         userRepository.save(user);
         return UserResponseDto.from(user);
-
     }
+
     @Transactional
     public void deleteUser(String email) {
         userRepository.deleteByEmail(email);

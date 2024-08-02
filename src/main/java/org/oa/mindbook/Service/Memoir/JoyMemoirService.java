@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.JoyMemoir;
-import org.oa.mindbook.Domain.Entity.User;
+import org.oa.mindbook.Domain.Entity.User.User;
 import org.oa.mindbook.Dto.request.Memoir.CreateJoyMemoirRequestDto;
 import org.oa.mindbook.Dto.response.Memoir.JoyMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.JoyMemoirResponseDto;

@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Book.Book;
 import org.oa.mindbook.Domain.Entity.Book.BookReport;
-import org.oa.mindbook.Domain.Entity.User;
+import org.oa.mindbook.Domain.Entity.User.User;
 import org.oa.mindbook.Dto.request.Book.BookReportReqDto;
 import org.oa.mindbook.Dto.response.Book.BookReportResDto;
 import org.oa.mindbook.Repository.Book.BookReportRepository;

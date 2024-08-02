@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.oa.mindbook.Domain.Entity.Book.Book;
 import org.oa.mindbook.Domain.Entity.Book.BookReport;
-import org.oa.mindbook.Domain.Entity.User;
+import org.oa.mindbook.Domain.Entity.User.User;
 
 @Getter
 @Setter

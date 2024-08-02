@@ -38,9 +38,11 @@ public class User extends BaseTimeEntity {
     private UserStatus status;
 
     // Dto를 사용해서 update하는 메서드.
-    // Entity에는 Setter를 사용하지 않는 것이 좋음.
+    // Entity에는 Setter를 사용하지 않는 것이 좋음
     public void update(UpdateUserRequestDto userRequestDto) {
-        password = userRequestDto.getPassword();
+        if (userRequestDto.getPassword() != null && !userRequestDto.getPassword().isEmpty()) {
+            this.password = userRequestDto.getPassword();
+        }
     }
 
     public User encodePassword(PasswordEncoder passwordEncoder){
@@ -48,8 +50,8 @@ public class User extends BaseTimeEntity {
         return this;
     }
 
-    public void updatePassword(PasswordEncoder passwordEncoder, String password){
-        this.password = passwordEncoder.encode(password);
+    public void updatePassword(String password){
+        this.password = password;
     }
 
     public boolean matchPassword(PasswordEncoder passwordEncoder, String checkPassword){

@@ -1,6 +1,5 @@
 package org.oa.mindbook.Dto.response.Book;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
