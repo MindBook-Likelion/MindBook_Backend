@@ -7,14 +7,12 @@ import org.oa.mindbook.Dto.request.User.CreateUserRequestDto;
 import org.oa.mindbook.Dto.request.User.UpdateUserRequestDto;
 import org.oa.mindbook.Dto.response.User.UserResponseDto;
 import org.oa.mindbook.Repository.User.UserRepository;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -40,6 +38,17 @@ public class UserService {
         User user = userRepository.findByEmail(email).orElseThrow(() -> new IllegalArgumentException("사용자가 존재히지 않습니다."));
         return UserResponseDto.from(user);
     }
+
+    public Long findUserIdByEmail(String email) {
+        // 이메일로 사용자 정보를 조회
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("사용자가 존재하지 않습니다."));
+
+        // 사용자 ID 반환
+        return user.getId();
+    }
+
+
     @Transactional
     public UserResponseDto updateUser(String email, UpdateUserRequestDto userRequestDto) {
         User user = userRepository.findByEmail(email)
