@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookService {
-    Long save(BookReqDto bookReqDto);
+    Long save(BookReqDto bookReqDto, Long userId);
 
     List<BookResDto> findAllByUserId(Long userId);
 

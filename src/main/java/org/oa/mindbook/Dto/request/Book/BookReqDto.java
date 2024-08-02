@@ -7,7 +7,6 @@ import lombok.*;
 @ToString
 @NoArgsConstructor
 public class BookReqDto {
-    private Long userId;
     private String title;
     private String author;
     private String publisher;

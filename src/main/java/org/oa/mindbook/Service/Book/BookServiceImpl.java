@@ -26,9 +26,9 @@ public class BookServiceImpl implements BookService {
     UserRepository userRepository;
 
     @Override
-    public Long save(BookReqDto bookReqDto) {
-        User user = userRepository.findById(bookReqDto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID: " + bookReqDto.getUserId()));
+    public Long save(BookReqDto bookReqDto, Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID: " + userId));
 
         Book book = Book.builder()
                 .user(user)

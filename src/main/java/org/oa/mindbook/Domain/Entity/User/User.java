@@ -7,7 +7,6 @@ import org.oa.mindbook.Dto.request.User.UpdateUserRequestDto;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Getter
-@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -33,9 +32,6 @@ public class User extends BaseTimeEntity {
 
     @Column
     private String roles;
-
-    @Column
-    private UserStatus status;
 
     // Dto를 사용해서 update하는 메서드.
     // Entity에는 Setter를 사용하지 않는 것이 좋음
