@@ -2,6 +2,7 @@ package org.oa.mindbook.Controller.User;
 
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.oa.mindbook.Dto.request.User.EmailVerificationDto;
 import org.oa.mindbook.Service.User.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+@Tag(name = "이메일 인증 API", description = "이메일 인증 API입니다.")
 public class EmailController {
 
     @Autowired

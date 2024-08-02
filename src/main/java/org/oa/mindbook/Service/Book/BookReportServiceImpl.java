@@ -29,9 +29,9 @@ public class BookReportServiceImpl implements BookReportService {
     UserRepository userRepository;
 
     @Override
-    public Long save(BookReportReqDto bookReportReqDto) {
-        User user = userRepository.findById(bookReportReqDto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID: " + bookReportReqDto.getUserId()));
+    public Long save(Long userId, BookReportReqDto bookReportReqDto) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID: " + userId));
 
         Book book = bookRepository.findById(bookReportReqDto.getBookId())
                 .orElseThrow(() -> new IllegalArgumentException("Invaild book ID: " + bookReportReqDto.getBookId()));

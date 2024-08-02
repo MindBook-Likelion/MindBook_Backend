@@ -10,7 +10,6 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class BookReportReqDto {
-    private Long userId;
     private Long bookId;
     private String contents;
 }
