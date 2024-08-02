@@ -3,7 +3,7 @@ package org.oa.mindbook.Domain.Entity.Book;
 import jakarta.persistence.*;
 import lombok.*;
 import org.oa.mindbook.Domain.BaseTimeEntity;
-import org.oa.mindbook.Domain.Entity.User;
+import org.oa.mindbook.Domain.Entity.User.User;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter

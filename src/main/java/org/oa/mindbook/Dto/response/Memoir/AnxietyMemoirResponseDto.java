@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.Entity.Memoir.AnxietyMemoir;
-import org.oa.mindbook.Domain.Entity.User;
+import org.oa.mindbook.Domain.Entity.User.User;
 import org.oa.mindbook.Dto.response.MemoirComment.AnxietyMemoirCommentResponseDto;
 
 import java.util.List;

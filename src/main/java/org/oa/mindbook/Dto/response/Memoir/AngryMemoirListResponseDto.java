@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.oa.mindbook.Domain.Entity.Memoir.AngryMemoir;
-import org.oa.mindbook.Domain.Entity.User;
+import org.oa.mindbook.Domain.Entity.User.User;
 
 @Builder
 @Getter

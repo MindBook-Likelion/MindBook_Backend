@@ -1,7 +1,6 @@
 package org.oa.mindbook.Service.Book;
 
 import org.oa.mindbook.Domain.Entity.Book.Book;
-import org.oa.mindbook.Domain.Entity.User;
 import org.oa.mindbook.Dto.request.Book.BookReqDto;
 import org.oa.mindbook.Dto.response.Book.BookResDto;
 

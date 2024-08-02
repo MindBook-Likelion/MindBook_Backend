@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.AnnoyMemoir;
 import org.oa.mindbook.Domain.Entity.MemoirComment.AnnoyMemoirComment;
-import org.oa.mindbook.Domain.Entity.User;
+import org.oa.mindbook.Domain.Entity.User.User;
 import org.oa.mindbook.Dto.request.MemoirComment.CreateAnnoyMemoirCommentRequestDto;
 import org.oa.mindbook.Repository.Memoir.AnnoyMemoirRepository;
 import org.oa.mindbook.Repository.MemoirComment.AnnoyMemoirCommentRepository;

@@ -4,7 +4,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.Memoir.SadMemoir;
-import org.oa.mindbook.Domain.Entity.User;
+import org.oa.mindbook.Domain.Entity.User.User;
 import org.oa.mindbook.Dto.request.Memoir.CreateSadMemoirRequestDto;
 import org.oa.mindbook.Dto.response.Memoir.SadMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.SadMemoirResponseDto;

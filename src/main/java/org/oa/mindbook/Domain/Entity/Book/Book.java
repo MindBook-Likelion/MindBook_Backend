@@ -2,11 +2,8 @@ package org.oa.mindbook.Domain.Entity.Book;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.oa.mindbook.Domain.Entity.User;
+import org.oa.mindbook.Domain.Entity.User.User;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

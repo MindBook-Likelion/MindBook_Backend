@@ -1,7 +1,6 @@
 package org.oa.mindbook.Repository.Book;
 
 import org.oa.mindbook.Domain.Entity.Book.Book;
-import org.oa.mindbook.Domain.Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
