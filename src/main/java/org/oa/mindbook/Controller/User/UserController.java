@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.User.User;
 import org.oa.mindbook.Dto.request.User.CreateUserRequestDto;
+import org.oa.mindbook.Dto.request.User.LoginRequestDto;
 import org.oa.mindbook.Dto.request.User.UpdateUserRequestDto;
 import org.oa.mindbook.Dto.response.User.UserResponseDto;
 import org.oa.mindbook.Service.User.EmailService;
@@ -84,5 +85,17 @@ public class UserController {
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    @Operation(method = "POST", summary = "로그인", description = "로그인합니다. email과 password를 body에 담아서 전송합니다.")
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequestDto loginRequestDto){
+        return null;
+    }
+
+    @Operation(method = "POST", summary = "로그아웃", description = "로그아웃합니다. accessToken을 header에 담아서 전송합니다. ")
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@AuthenticationPrincipal UserDetails userDetails) {
+        return null;
     }
 }
