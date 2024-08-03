@@ -31,6 +31,7 @@ public class UserController {
 
     //회원가입
     @PostMapping("/register")
+    @Operation(summary = "회원가입", description = "회원가입")
     public ResponseEntity<?> createUser(@RequestBody CreateUserRequestDto createUserRequestDto) {
         UserResponseDto responseDto = userService.createUser(createUserRequestDto);
         return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
@@ -38,12 +39,14 @@ public class UserController {
 
     // 유저 정보 조회
     @GetMapping("/info")
+    @Operation(summary = "유저 정보 조회", description = "유저의 이메일, 닉네임, 유저아이디를 조회할 수 있습니다.")
     public ResponseEntity<?> getUser(@AuthenticationPrincipal UserDetails userDetails) {
         return ResponseEntity.ok(userService.getUser(userDetails.getUsername()));
     }
 
     // 비밀번호 변경
     @PutMapping("/update")
+    @Operation(summary = "비밀번호 변경", description = "비밀번호를 변경할 수 있습니다.")
     public ResponseEntity<?> updateUser(@AuthenticationPrincipal UserDetails userDetails, @RequestBody UpdateUserRequestDto userUpdateRequestDto) {
         UserResponseDto responseDto = userService.updateUser(userDetails.getUsername(), userUpdateRequestDto);
         return ResponseEntity.ok(responseDto);
@@ -51,13 +54,14 @@ public class UserController {
 
     // 탈퇴
     @DeleteMapping("/withdraw")
+    @Operation(summary = "탈퇴", description = "DB에서 유저정보를 삭제하여 탈퇴합니다.")
     public ResponseEntity<?> deleteUser(@AuthenticationPrincipal UserDetails userDetails) {
         userService.deleteUser(userDetails.getUsername());
         return ResponseEntity.noContent().build();
     }
 
     //비밀번호 재발급
-    @Operation(summary = "사용자 비밀번호 재발급 ", description = "Query String : email 전달 시 서버에서 사용자 이메일로 임시 비밀번호를 보내고, 사용자 비밀번호를 해당 비밀번호로 변경")
+    @Operation(summary = "임시 비밀번호 발급 ", description = "Query String : email 전달 시 서버에서 사용자 이메일로 임시 비밀번호를 보내고, 사용자 비밀번호를 해당 비밀번호로 변경")
     @PostMapping("/findPw")
     public ResponseEntity<?> passWordReissuance(@RequestParam("email") String email) {
         try {
@@ -71,6 +75,7 @@ public class UserController {
 
     // 가입한 날짜 조회
     @GetMapping("/createdAt")
+    @Operation(summary = "가입한 날짜 조회", description = "회원가입한 날짜로부터 며칠이 지났는지 알려줍니다. \n 예: ㅇㅇ님이 마음책방에 오신지 10일 되었어요! 😀")
     public ResponseEntity<?> getCreatedAt(@AuthenticationPrincipal UserDetails userDetails) {
         String email = userDetails.getUsername(); // 이메일을 가져옴
         try {
