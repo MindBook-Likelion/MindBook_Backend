@@ -8,8 +8,11 @@ import org.oa.mindbook.Dto.request.Memoir.CreateSadMemoirRequestDto;
 import org.oa.mindbook.Dto.response.Memoir.SadMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.SadMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.SadMemoirService;
+import org.oa.mindbook.Service.User.UserService;
+import org.oa.mindbook.auth.CustomUserDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,27 +25,36 @@ import java.util.List;
 public class SadMemoirController {
 
     private final SadMemoirService sadMemoirService;
+    private final UserService userService;
 
     @Operation(method = "POST", summary = "슬픔 회고록 작성")
     @PostMapping("")
-    public ResponseEntity<?> createSadMemoir(@RequestBody CreateSadMemoirRequestDto createSadMemoirRequestDto) {
-        log.info("오늘 있었던 일: {}", createSadMemoirRequestDto.getMemory());
-        log.info("느낀점: {}", createSadMemoirRequestDto.getImpression());
-        log.info("공개여부: {}", createSadMemoirRequestDto.getStatus());
+    public ResponseEntity<?> createSadMemoir(@RequestBody CreateSadMemoirRequestDto createSadMemoirRequestDto, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
 
-        Long SadMemoirId = sadMemoirService.saveSadMemoir(createSadMemoirRequestDto);
+        Long userId = userService.findUserIdByEmail(email);
+
+        Long SadMemoirId = sadMemoirService.saveSadMemoir(userId, createSadMemoirRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(SadMemoirId);
     }
 
     @Operation(method = "GET", summary = "슬픔 회고록 상세 조회")
     @GetMapping("/detail")
-    public SadMemoirResponseDto getSadMemoir(@RequestParam Long sadMemoirId, @RequestParam Long userId) {
+    public SadMemoirResponseDto getSadMemoir(@RequestParam Long sadMemoirId, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
         return sadMemoirService.getSadMemoir(sadMemoirId, userId);
     }
 
     @Operation(method = "GET", summary = "슬픔 회고록 목록 작성")
     @GetMapping("")
-    public List<SadMemoirListResponseDto> getSadMemoirList(@RequestParam String status, @RequestParam Long userId) {
+    public List<SadMemoirListResponseDto> getSadMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
         return sadMemoirService.getSadMemoirList(status, userId);
     }
 }
