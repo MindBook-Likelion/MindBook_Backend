@@ -7,7 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.MemoirComment.SadMemoirComment;
 import org.oa.mindbook.Dto.request.MemoirComment.CreateSadMemoirCommentRequestDto;
 import org.oa.mindbook.Service.MemoirComment.SadMemoirCommentService;
+import org.oa.mindbook.Service.User.UserService;
+import org.oa.mindbook.auth.CustomUserDetails;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +23,17 @@ import java.util.List;
 public class SadMemoirCommentController {
 
     private final SadMemoirCommentService sadMemoirCommentService;
+    private final UserService userService;
+
     @Operation(method = "POST", summary = "슬픔 회고록 댓글 작성")
     @PostMapping("")
-    public String createSadMemoirComment(@RequestBody CreateSadMemoirCommentRequestDto dto) {
+    public String createSadMemoirComment(@RequestBody CreateSadMemoirCommentRequestDto dto, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 
-        sadMemoirCommentService.saveSadMemoirComment(dto);
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
+        sadMemoirCommentService.saveSadMemoirComment(dto, userId);
 
         return "슬픔 회고록 댓글이 작성되었습니다.";
     }

@@ -22,9 +22,9 @@ public class AnxietyMemoirCommentService {
     private final AnxietyMemoirCommentRepository anxietyMemoirCommentRepository;
     private final UserRepository userRepository;
     @Transactional
-    public void saveAnxietyMemoirComment(CreateAnxietyMemoirCommentRequestDto dto) {
+    public void saveAnxietyMemoirComment(CreateAnxietyMemoirCommentRequestDto dto, Long userId) {
         AnxietyMemoir anxietyMemoir = anxietyMemoirRepository.findById(dto.getAnxietyMemoirId()).orElseThrow();
-        User user = userRepository.findById(dto.getUserId()).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
 
         anxietyMemoirCommentRepository.save(AnxietyMemoirComment.builder()
                 .user(user)

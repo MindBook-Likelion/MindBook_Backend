@@ -23,9 +23,9 @@ public class PastMemoirCommentService {
     private final PastMemoirCommentRepository pastMemoirCommentRepository;
     private final UserRepository userRepository;
     @Transactional
-    public void savePastMemoirComment(CreatePastMemoirCommentRequestDto dto) {
+    public void savePastMemoirComment(CreatePastMemoirCommentRequestDto dto, Long userId) {
         PastMemoir pastMemoir = pastMemoirRepository.findById(dto.getPastMemoirId()).orElseThrow();
-        User user = userRepository.findById(dto.getUserId()).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
 
         pastMemoirCommentRepository.save(PastMemoirComment.builder()
                 .user(user)

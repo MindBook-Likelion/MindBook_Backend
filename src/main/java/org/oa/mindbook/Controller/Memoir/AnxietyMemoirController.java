@@ -8,8 +8,11 @@ import org.oa.mindbook.Dto.request.Memoir.CreateAnxietyMemoirRequestDto;
 import org.oa.mindbook.Dto.response.Memoir.AnxietyMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.AnxietyMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.AnxietyMemoirService;
+import org.oa.mindbook.Service.User.UserService;
+import org.oa.mindbook.auth.CustomUserDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,27 +25,36 @@ import java.util.List;
 public class AnxietyMemoirController {
 
     private final AnxietyMemoirService anxietyMemoirService;
+    private final UserService userService;
 
     @Operation(method = "POST", summary = "불안 회고록 작성")
     @PostMapping("")
-    public ResponseEntity<?> createAnxietyMemoir(@RequestBody CreateAnxietyMemoirRequestDto createAnxietyMemoirRequestDto) {
-        log.info("오늘 있었던 일: {}", createAnxietyMemoirRequestDto.getMemory());
-        log.info("느낀점: {}",createAnxietyMemoirRequestDto.getImpression());
-        log.info("공개여부: {}", createAnxietyMemoirRequestDto.getStatus());
+    public ResponseEntity<?> createAnxietyMemoir(@RequestBody CreateAnxietyMemoirRequestDto createAnxietyMemoirRequestDto, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
 
-        Long AnxietyMemoirId = anxietyMemoirService.saveAnxietyMemoir(createAnxietyMemoirRequestDto);
+        Long userId = userService.findUserIdByEmail(email);
+
+        Long AnxietyMemoirId = anxietyMemoirService.saveAnxietyMemoir(userId,createAnxietyMemoirRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(AnxietyMemoirId);
     }
 
     @Operation(method = "GET", summary = "불안 회고록 상세 조회")
     @GetMapping("/detail")
-    public AnxietyMemoirResponseDto getAnxietyMemoir(@RequestParam Long userId, @RequestParam Long anxietyMemoirId) {
+    public AnxietyMemoirResponseDto getAnxietyMemoir(@AuthenticationPrincipal CustomUserDetails customUserDetails, @RequestParam Long anxietyMemoirId) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
         return anxietyMemoirService.getAnxietyMemoir(anxietyMemoirId, userId);
     }
 
     @Operation(method = "GET", summary = "불안 회고록 목록 작성")
     @GetMapping("")
-    public List<AnxietyMemoirListResponseDto> getAnxietyMemoirList(@RequestParam String status, @RequestParam Long userId) {
+    public List<AnxietyMemoirListResponseDto> getAnxietyMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
         return anxietyMemoirService.getAnxietyMemoirList(status, userId);
     }
 }

@@ -27,9 +27,9 @@ public class PastMemoirService {
     private final UserRepository userRepository;
 
     @Transactional
-    public Long savePastMemoir(CreatePastMemoirRequestDto createPastMemoirRequestDto) {
-        User user = userRepository.findById(createPastMemoirRequestDto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("Invaild user ID : " + createPastMemoirRequestDto.getUserId()));
+    public Long savePastMemoir(Long userId, CreatePastMemoirRequestDto createPastMemoirRequestDto) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invaild user ID : " + userId));
 
         PastMemoir pastMemoir = PastMemoir.builder()
                 .user(user)

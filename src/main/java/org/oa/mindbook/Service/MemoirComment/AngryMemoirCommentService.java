@@ -24,9 +24,9 @@ public class AngryMemoirCommentService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void saveAngryMemoirComment(CreateAngryMemoirCommentRequestDto dto) {
+    public void saveAngryMemoirComment(CreateAngryMemoirCommentRequestDto dto, Long userId) {
         AngryMemoir angryMemoir = angryMemoirRepository.findById(dto.getAngryMemoirId()).orElseThrow();
-        User user = userRepository.findById(dto.getUserId()).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
 
         angryMemoirCommentRepository.save(AngryMemoirComment.builder()
                 .user(user)

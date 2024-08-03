@@ -24,9 +24,9 @@ public class SadMemoirCommentService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void saveSadMemoirComment(CreateSadMemoirCommentRequestDto dto) {
+    public void saveSadMemoirComment(CreateSadMemoirCommentRequestDto dto, Long userId) {
         SadMemoir sadMemoir = sadMemoirRepository.findById(dto.getSadMemoirId()).orElseThrow();
-        User user = userRepository.findById(dto.getUserId()).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
 
         sadMemoirCommentRepository.save(SadMemoirComment.builder()
                 .user(user)
