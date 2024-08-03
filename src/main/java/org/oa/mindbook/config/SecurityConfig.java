@@ -1,4 +1,4 @@
-package org.oa.mindbook.config;
+package org.oa.mindbook.Config;
 
 import lombok.RequiredArgsConstructor;
 import org.oa.mindbook.filter.CustomLoginFilter;

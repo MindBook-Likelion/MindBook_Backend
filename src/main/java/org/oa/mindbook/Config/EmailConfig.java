@@ -1,4 +1,4 @@
-package org.oa.mindbook.config;
+package org.oa.mindbook.Config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
