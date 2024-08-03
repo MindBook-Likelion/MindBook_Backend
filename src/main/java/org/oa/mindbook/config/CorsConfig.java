@@ -1,4 +1,4 @@
-package org.oa.mindbook.config;
+package org.oa.mindbook.Config;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -20,6 +20,8 @@ public class CorsConfig implements WebMvcConfigurer {
         allowedOriginPatterns.add("http://localhost:8000");
         allowedOriginPatterns.add("http://localhost:3000");
         allowedOriginPatterns.add("http://localhost:5500");
+        allowedOriginPatterns.add("http://3.38.119.114:8080");
+        allowedOriginPatterns.add("http://3.38.119.114:8000");
 
         //허용하는 HTTP METHOD 지정
         ArrayList<String> allowedHttpMethods = new ArrayList<>();
