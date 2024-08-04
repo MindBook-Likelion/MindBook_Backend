@@ -2,10 +2,15 @@ package org.oa.mindbook.Service.User;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.oa.mindbook.Domain.Entity.Memoir.AngryMemoir;
 import org.oa.mindbook.Domain.Entity.User.User;
 import org.oa.mindbook.Dto.request.User.CreateUserRequestDto;
 import org.oa.mindbook.Dto.request.User.UpdateUserRequestDto;
 import org.oa.mindbook.Dto.response.User.UserResponseDto;
+import org.oa.mindbook.Repository.Book.BookReportRepository;
+import org.oa.mindbook.Repository.Book.BookRepository;
+import org.oa.mindbook.Repository.Memoir.*;
+import org.oa.mindbook.Repository.MemoirComment.*;
 import org.oa.mindbook.Repository.User.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,6 +28,20 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JoyMemoirRepository joyMemoirRepository;
+    private final AnxietyMemoirRepository anxietyMemoirRepository;
+    private final AnnoyMemoirRepository annoyMemoirRepository;
+    private final AngryMemoirRepository angryMemoirRepository;
+    private final SadMemoirRepository sadMemoirRepository;
+    private final PastMemoirRepository pastMemoirRepository;
+    private final JoyMemoirCommentRepository joyMemoirCommentRepository;
+    private final AnxietyMemoirCommentRepository anxietyMemoirCommentRepository;
+    private final AnnoyMemoirCommentRepository annoyMemoirCommentRepository;
+    private final AngryMemoirCommentRepository angryMemoirCommentRepository;
+    private final SadMemoirCommentRepository sadMemoirCommentRepository;
+    private final PastMemoirCommentRepository pastMemoirCommentRepository;
+    private final BookRepository bookRepository;
+    private final BookReportRepository bookReportRepository;
 
     @Transactional
     public UserResponseDto createUser(CreateUserRequestDto createUserRequestDto) {
@@ -66,7 +85,28 @@ public class UserService {
 
     @Transactional
     public void deleteUser(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("사용자가 존재하지 않습니다."));
+
+        joyMemoirCommentRepository.deleteAllByUser(user);
+        anxietyMemoirCommentRepository.deleteAllByUser(user);
+        annoyMemoirCommentRepository.deleteAllByUser(user);
+        angryMemoirCommentRepository.deleteAllByUser(user);
+        sadMemoirCommentRepository.deleteAllByUser(user);
+        pastMemoirCommentRepository.deleteAllByUser(user);
+        joyMemoirRepository.deleteAllByUser(user);
+        anxietyMemoirRepository.deleteAllByUser(user);
+        annoyMemoirRepository.deleteAllByUser(user);
+        angryMemoirRepository.deleteAllByUser(user);
+        sadMemoirRepository.deleteAllByUser(user);
+        pastMemoirRepository.deleteAllByUser(user);
+        bookReportRepository.deleteAllByUser(user);
+        bookRepository.deleteAllByUser(user);
+
+
         userRepository.deleteByEmail(email);
+
+
     }
 
     public String getDaysSinceJoinedByEmail(String email) {
