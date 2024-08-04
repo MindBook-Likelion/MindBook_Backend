@@ -20,6 +20,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/angryMemoir")
 @Tag(name = "화남 회고록 API", description = "화남 회고록 관련 API입니다.")
 public class AngryMemoirController {
