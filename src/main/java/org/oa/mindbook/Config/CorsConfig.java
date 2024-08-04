@@ -2,6 +2,7 @@ package org.oa.mindbook.Config;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Configuration
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CorsConfig implements WebMvcConfigurer {
 
