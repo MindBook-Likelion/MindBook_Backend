@@ -21,7 +21,6 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/annoyMemoir")
-@CrossOrigin(originPatterns = "*" ,value = "*")
 @Tag(name = "짜증 회고록 API", description = "짜증 회고록 관련 API입니다.")
 public class AnnoyMemoirController {
 
