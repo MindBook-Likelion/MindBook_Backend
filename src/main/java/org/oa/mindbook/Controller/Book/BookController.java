@@ -38,8 +38,8 @@ public class BookController {
     private final UserService userService;
 
     // 네이버 도서 검색 api key
-    private final String CLIENT_ID = "bryNjD_LmXdpMZXtxUlg";
-    private final String CLIENT_SECRET = "M7YMKHpThW";
+    private final String CLIENT_ID = "";
+    private final String CLIENT_SECRET = "";
 
     @Operation(method = "GET", summary = "책 검색 open api 사용")
     @GetMapping("/searchBook")
