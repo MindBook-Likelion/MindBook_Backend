@@ -19,7 +19,7 @@ public class EmailController {
     private EmailService emailService;
 
     @PostMapping("/emailCheck")
-    @Operation(summary = "이메일 인증 요청", description = "Request : Request Body에 email을 담아서 보내면 해당 이메일로 전송 메세지가 전송됨 \n Response : Https Status 200")
+    @Operation(summary = "이메일 인증 요청", description = "Request : 파라미터로 email을 담아서 보내면 해당 이메일로 전송 메세지가 전송됨 \n Response : Https Status 200")
     public ResponseEntity<?> requestEmailValidation(@RequestParam String email) {
         try {
             emailService.sendMessage(email);
