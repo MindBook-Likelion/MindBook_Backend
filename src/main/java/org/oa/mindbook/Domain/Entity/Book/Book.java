@@ -37,9 +37,6 @@ public class Book {
     @Column
     private String image;
 
-    @Column
-    private String isbn;
-
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private User user;

@@ -34,6 +34,7 @@ public class SecurityConfig {
             "/user/emailCheck", // 이메일 인증 요청은 인증이 필요하지 않음
             "/user/verification", // 이메일 유효성 확인은 인증이 필요하지 않음
             "/user/findPw", // 비밀번호 재발급은 인증이 필요하지 않음
+            "/searchBook", // 책 검색 api
             "/auth/reissue", //토큰 재발급은 인증이 필요하지 않음
             "/auth/**"
     };

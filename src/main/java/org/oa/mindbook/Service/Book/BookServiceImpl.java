@@ -37,7 +37,6 @@ public class BookServiceImpl implements BookService {
                 .publisher(bookReqDto.getPublisher())
                 .pubdate(bookReqDto.getPubdate())
                 .description(bookReqDto.getDescription())
-                .isbn(bookReqDto.getIsbn())
                 .image(bookReqDto.getImage())
                 .build();
 
