@@ -7,7 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.MemoirComment.AnxietyMemoirComment;
 import org.oa.mindbook.Dto.request.MemoirComment.CreateAnxietyMemoirCommentRequestDto;
 import org.oa.mindbook.Service.MemoirComment.AnxietyMemoirCommentService;
+import org.oa.mindbook.Service.User.UserService;
+import org.oa.mindbook.auth.CustomUserDetails;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +23,16 @@ import java.util.List;
 public class AnxietyMemoirCommentController {
 
     private final AnxietyMemoirCommentService anxietyMemoirCommentService;
+    private final UserService userService;
+
     @Operation(method = "POST", summary = "불안 회고록 댓글 작성")
     @PostMapping("")
-    public String createAnxietyMemoirComment(@RequestBody CreateAnxietyMemoirCommentRequestDto dto) {
+    public String createAnxietyMemoirComment(@RequestBody CreateAnxietyMemoirCommentRequestDto dto,@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
 
-        anxietyMemoirCommentService.saveAnxietyMemoirComment(dto);
+        Long userId = userService.findUserIdByEmail(email);
+
+        anxietyMemoirCommentService.saveAnxietyMemoirComment(dto, userId);
 
         return "불안 회고록 댓글이 작성되었습니다.";
 

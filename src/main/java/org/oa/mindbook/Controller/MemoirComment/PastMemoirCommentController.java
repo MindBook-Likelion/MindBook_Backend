@@ -7,7 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Domain.Entity.MemoirComment.PastMemoirComment;
 import org.oa.mindbook.Dto.request.MemoirComment.CreatePastMemoirCommentRequestDto;
 import org.oa.mindbook.Service.MemoirComment.PastMemoirCommentService;
+import org.oa.mindbook.Service.User.UserService;
+import org.oa.mindbook.auth.CustomUserDetails;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +23,17 @@ import java.util.List;
 public class PastMemoirCommentController {
 
     private final PastMemoirCommentService pastMemoirCommentService;
+    private final UserService userService;
+
     @Operation(method = "POST", summary = "추억 회고록 댓글 작성")
     @PostMapping("")
-    public String createPastMemoirComment(@RequestBody CreatePastMemoirCommentRequestDto dto) {
+    public String createPastMemoirComment(@RequestBody CreatePastMemoirCommentRequestDto dto,  @AuthenticationPrincipal CustomUserDetails customUserDetails) {
 
-        pastMemoirCommentService.savePastMemoirComment(dto);
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
+        pastMemoirCommentService.savePastMemoirComment(dto, userId);
 
         return "추억 회고록 댓글이 생성되었습니다.";
 

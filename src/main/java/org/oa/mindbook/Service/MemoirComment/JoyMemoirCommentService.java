@@ -23,10 +23,10 @@ public class JoyMemoirCommentService {
     private final JoyMemoirRepository joyMemoirRepository;
     private final UserRepository userRepository;
     @Transactional
-    public void saveJoyMemoirComment(CreateJoyMemoirCommentRequestDto dto) {
+    public void saveJoyMemoirComment(CreateJoyMemoirCommentRequestDto dto, Long userId) {
 
         JoyMemoir joyMemoir = joyMemoirRepository.findById(dto.getJoyMemoirId()).orElseThrow();
-        User user = userRepository.findById(dto.getUserId()).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
 
         joyMemoirCommentRepository.save(JoyMemoirComment.builder()
                 .user(user)

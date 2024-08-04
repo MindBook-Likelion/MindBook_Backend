@@ -27,9 +27,9 @@ public class AnxietyMemoirService {
     private final UserRepository userRepository;
 
     @Transactional
-    public Long saveAnxietyMemoir(CreateAnxietyMemoirRequestDto createAnxietyMemoirRequestDto) {
-        User user = userRepository.findById(createAnxietyMemoirRequestDto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("Invaild user ID : " + createAnxietyMemoirRequestDto.getUserId()));
+    public Long saveAnxietyMemoir(Long userId,CreateAnxietyMemoirRequestDto createAnxietyMemoirRequestDto) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invaild user ID : " + userId));
 
         AnxietyMemoir anxietyMemoir = AnxietyMemoir.builder()
                 .user(user)

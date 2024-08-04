@@ -36,7 +36,9 @@ public class SecurityConfig {
             "/user/findPw", // 비밀번호 재발급은 인증이 필요하지 않음
             "/searchBook", // 책 검색 api
             "/auth/reissue", //토큰 재발급은 인증이 필요하지 않음
-            "/auth/**"
+            "/auth/**",
+            "/swagger-ui/**",   // swagger 관련 URL
+            "/v3/api-docs/**"
     };
 
     @Bean

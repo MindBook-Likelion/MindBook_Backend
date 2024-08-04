@@ -8,8 +8,11 @@ import org.oa.mindbook.Dto.request.Memoir.CreateJoyMemoirRequestDto;
 import org.oa.mindbook.Dto.response.Memoir.JoyMemoirListResponseDto;
 import org.oa.mindbook.Dto.response.Memoir.JoyMemoirResponseDto;
 import org.oa.mindbook.Service.Memoir.JoyMemoirService;
+import org.oa.mindbook.Service.User.UserService;
+import org.oa.mindbook.auth.CustomUserDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,27 +25,36 @@ import java.util.List;
 public class JoyMemoirController {
 
     private final JoyMemoirService joyMemoirService;
+    private final UserService userService;
 
     @Operation(method = "POST", summary = "기쁨 회고록 작성")
     @PostMapping("")
-    public ResponseEntity<?> createJoyMemoir(@RequestBody CreateJoyMemoirRequestDto createJoyMemoirRequestDto) {
-        log.info("오늘 있었던 일: {}", createJoyMemoirRequestDto.getMemory());
-        log.info("느낀점: {}",createJoyMemoirRequestDto.getImpression());
-        log.info("공개여부: {}", createJoyMemoirRequestDto.getStatus());
+    public ResponseEntity<?> createJoyMemoir(@RequestBody CreateJoyMemoirRequestDto createJoyMemoirRequestDto, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
 
-        Long JoyMemoirId = joyMemoirService.saveJoyMemoir(createJoyMemoirRequestDto);
+        Long userId = userService.findUserIdByEmail(email);
+
+        Long JoyMemoirId = joyMemoirService.saveJoyMemoir(userId,createJoyMemoirRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(JoyMemoirId);
     }
 
     @Operation(method = "GET", summary = "기쁨 회고록 상세 조회")
     @GetMapping("/detail")
-    public JoyMemoirResponseDto getJoyMemoir(@RequestParam Long userId, @RequestParam Long joyMemoirId) {
+    public JoyMemoirResponseDto getJoyMemoir(@AuthenticationPrincipal CustomUserDetails customUserDetails, @RequestParam Long joyMemoirId) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
         return joyMemoirService.getJoyMemoir(joyMemoirId, userId);
     }
 
     @Operation(method = "GET", summary = "기쁨 회고록 목록 작성")
     @GetMapping("")
-    public List<JoyMemoirListResponseDto> getJoyMemoirList(@RequestParam String status, @RequestParam Long userId) {
+    public List<JoyMemoirListResponseDto> getJoyMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
         return joyMemoirService.getJoyMemoirList(status, userId);
     }
 

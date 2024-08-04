@@ -24,9 +24,9 @@ public class AnnoyMemoirCommentService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void saveAnnoyMemoirComment(CreateAnnoyMemoirCommentRequestDto dto) {
+    public void saveAnnoyMemoirComment(CreateAnnoyMemoirCommentRequestDto dto, Long userId) {
         AnnoyMemoir annoyMemoir = annoyMemoirRepository.findById(dto.getAnnoyMemoirId()).orElseThrow();
-        User user = userRepository.findById(dto.getUserId()).orElseThrow();
+        User user = userRepository.findById(userId).orElseThrow();
 
         annoyMemoirCommentRepository.save(AnnoyMemoirComment.builder()
                 .user(user)

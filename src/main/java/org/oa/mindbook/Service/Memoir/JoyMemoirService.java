@@ -26,9 +26,9 @@ public class JoyMemoirService {
     private final UserRepository userRepository;
 
     @Transactional
-    public Long saveJoyMemoir(CreateJoyMemoirRequestDto createJoyMemoirRequestDto) {
-        User user = userRepository.findById(createJoyMemoirRequestDto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("Invaild user ID : " + createJoyMemoirRequestDto.getUserId()));
+    public Long saveJoyMemoir(Long userId, CreateJoyMemoirRequestDto createJoyMemoirRequestDto) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invaild user ID : " + userId));
 
         JoyMemoir joyMemoir = JoyMemoir.builder()
                 .user(user)
