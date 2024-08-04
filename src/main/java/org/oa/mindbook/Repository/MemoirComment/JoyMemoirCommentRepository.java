@@ -1,6 +1,7 @@
 package org.oa.mindbook.Repository.MemoirComment;
 
 import org.oa.mindbook.Domain.Entity.MemoirComment.JoyMemoirComment;
+import org.oa.mindbook.Domain.Entity.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -10,4 +11,5 @@ public interface JoyMemoirCommentRepository extends JpaRepository<JoyMemoirComme
     @Query(value = "select c from JoyMemoirComment c where c.joyMemoir.joyMemoirId = :id")
     List<JoyMemoirComment> findByJoyMemoirId(Long id);
 
+    void deleteAllByUser(User user);
 }
