@@ -12,6 +12,5 @@ public class BookReqDto {
     private String publisher;
     private String pubdate;
     private String description;
-    private String isbn;
     private String image;
 }

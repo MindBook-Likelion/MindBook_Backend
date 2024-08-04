@@ -25,7 +25,6 @@ public class BookResDto {
         this.publisher = book.getPublisher();
         this.pubdate = book.getPubdate();
         this.description = book.getDescription();
-        this.isbn = book.getIsbn();
         this.image = book.getImage();
     }
 }
