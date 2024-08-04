@@ -9,7 +9,6 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class BookDto {
-    private Long id;
     private String title;
     private String author;
     private String publisher;
@@ -18,7 +17,6 @@ public class BookDto {
     private String image;
 
     @Builder
-
     public BookDto(String title, String author, String publisher, String pubdate, String description, String image) {
         this.title = title;
         this.author = author;
