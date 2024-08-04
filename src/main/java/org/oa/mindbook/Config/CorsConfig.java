@@ -1,4 +1,4 @@
-package org.oa.mindbook.config;
+package org.oa.mindbook.Config;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
