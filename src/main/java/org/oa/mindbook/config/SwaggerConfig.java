@@ -1,4 +1,4 @@
-package org.oa.mindbook.Config;
+package org.oa.mindbook.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
