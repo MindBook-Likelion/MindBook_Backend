@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/user")
 @Tag(name = "이메일 인증 API", description = "이메일 인증 API입니다.")
 public class EmailController {

@@ -18,7 +18,6 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/annoyMemoirComment")
 @Tag(name = "짜증 회고록 댓글 API", description = "짜증 회고록 댓글 관련 API입니다.")
 public class AnnoyMemoirCommentController {
