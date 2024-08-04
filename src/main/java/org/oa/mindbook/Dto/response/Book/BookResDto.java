@@ -15,7 +15,6 @@ public class BookResDto {
     private String publisher;
     private String pubdate;
     private String description;
-    private String isbn;
     private String image;
 
     public BookResDto(Book book) {

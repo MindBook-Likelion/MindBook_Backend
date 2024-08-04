@@ -33,7 +33,7 @@ public class EmailService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    // 임시 번호 발급
+    // 인증 번호 전송
     private MimeMessage createMessage(String to)throws Exception{
         String ePw = createKey();
 
