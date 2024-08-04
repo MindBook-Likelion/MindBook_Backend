@@ -2,12 +2,15 @@ package org.oa.mindbook.Config;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CorsConfig implements WebMvcConfigurer {
@@ -35,6 +38,10 @@ public class CorsConfig implements WebMvcConfigurer {
 
         configuration.setAllowedOrigins(allowedOriginPatterns);
         configuration.setAllowedMethods(allowedHttpMethods);
+
+        configuration.setAllowedHeaders(Collections.singletonList("*"));
+        configuration.setAllowedHeaders(List.of(HttpHeaders.AUTHORIZATION, HttpHeaders.CONTENT_TYPE));
+        configuration.setAllowCredentials(true); //credential TRUE
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
