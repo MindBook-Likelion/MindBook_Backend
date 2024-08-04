@@ -19,6 +19,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/pastMemoirComment")
+@CrossOrigin(originPatterns = "*" ,value = "*")
 @Tag(name = "추억 회고록 댓글 API", description = "추억 회고록 댓글 관련 API입니다.")
 public class PastMemoirCommentController {
 
