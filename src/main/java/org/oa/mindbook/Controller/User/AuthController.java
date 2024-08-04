@@ -5,16 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.oa.mindbook.Dto.request.User.JwtDto;
 import org.oa.mindbook.Service.User.AuthService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.SignatureException;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(originPatterns = "*" ,value = "*")
 @RequestMapping("/auth")
 public class AuthController {
 

@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("")
 @RequiredArgsConstructor
+@CrossOrigin(originPatterns = "*" ,value = "*")
 @Tag(name = "책 API", description = "책 API입니다.")
 public class BookController {
 
