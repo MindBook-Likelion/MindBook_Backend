@@ -37,13 +37,11 @@ public class BookController {
     private final BookService bookService;
     private final UserService userService;
 
-    // 네이버 도서 검색 api key
-    private final String CLIENT_ID = "";
-    private final String CLIENT_SECRET = "";
-
     @Operation(method = "GET", summary = "책 검색 open api 사용")
     @GetMapping("/searchBook")
-    public ResponseEntity<?> bookSearch(@RequestParam("keyword") String keyword) {
+    public ResponseEntity<?> bookSearch(@RequestParam("keyword") String keyword,
+                                        @RequestHeader("X-Naver-Client-Id") String CLIENT_ID,
+                                        @RequestHeader("X-Naver-Client-Secret") String CLIENT_SECRET) {
         try {
             String encodedKeyword = URLEncoder.encode(keyword, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/search/book.json?query=" + encodedKeyword + "&display=100&sort=sim";
