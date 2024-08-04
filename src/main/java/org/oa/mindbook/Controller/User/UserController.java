@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/user")
 @Tag(name = "유저 API", description = "유저 API입니다.")
 public class UserController {
