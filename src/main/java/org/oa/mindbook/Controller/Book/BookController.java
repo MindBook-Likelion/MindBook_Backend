@@ -44,7 +44,7 @@ public class BookController {
                                         @RequestHeader("X-Naver-Client-Secret") String CLIENT_SECRET) {
         try {
             String encodedKeyword = URLEncoder.encode(keyword, "UTF-8");
-            String apiURL = "https://openapi.naver.com/v1/search/book.json?query=" + encodedKeyword + "&display=100&sort=sim";
+            String apiURL = "https://openapi.naver.com/v1/search/book.json?query=" + encodedKeyword + "&display=10&sort=sim";
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
