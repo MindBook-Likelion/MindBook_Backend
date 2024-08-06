@@ -75,15 +75,23 @@ public class UserService {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("사용자가 존재하지 않습니다."));
 
-        if (userRequestDto.getPassword() != null && !userRequestDto.getPassword().isEmpty()) {
-            String encodedPassword = passwordEncoder.encode(userRequestDto.getPassword());
-            userRequestDto.setPassword(encodedPassword);
+        if (userRequestDto.getPassword() == null || userRequestDto.getNewPassword() == null) {
+            throw new IllegalArgumentException("현재 비밀번호와 새 비밀번호를 모두 입력해야 합니다.");
         }
 
-        user.update(userRequestDto);
+        // 현재 비밀번호 확인
+        if (!passwordEncoder.matches(userRequestDto.getPassword(), user.getPassword())) {
+            throw new IllegalArgumentException("현재 비밀번호가 일치하지 않습니다.");
+        }
+
+        // 새로운 비밀번호 인코딩 및 업데이트
+        String encodedNewPassword = passwordEncoder.encode(userRequestDto.getNewPassword());
+        user.updatePassword(encodedNewPassword);
+
         userRepository.save(user);
         return UserResponseDto.from(user);
     }
+
 
     @Transactional
     public void deleteUser(String email) {
