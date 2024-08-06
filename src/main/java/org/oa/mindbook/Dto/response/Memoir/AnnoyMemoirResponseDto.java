@@ -26,8 +26,6 @@ public class AnnoyMemoirResponseDto {
 
     private String memory;
 
-    private String impression;
-
     private String status;
 
     private List<AnnoyMemoirCommentResponseDto> commentList;
@@ -39,7 +37,6 @@ public class AnnoyMemoirResponseDto {
                 .nickName(user.getNickName())
                 .createdAt(annoyMemoir.getCreatedAt())
                 .memory(annoyMemoir.getMemory())
-                .impression(annoyMemoir.getImpression())
                 .status(annoyMemoir.getStatus())
                 .commentList(commentList)
                 .build();

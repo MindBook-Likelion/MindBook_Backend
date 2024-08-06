@@ -13,8 +13,6 @@ public class CreateJoyMemoirRequestDto {
 
     private String memory;
 
-    private String impression;
-
     private String status;
 
 }

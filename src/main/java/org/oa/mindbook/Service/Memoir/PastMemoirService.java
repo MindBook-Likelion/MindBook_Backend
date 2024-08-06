@@ -35,7 +35,6 @@ public class PastMemoirService {
                 .user(user)
                 .pastAt(createPastMemoirRequestDto.getPastAt())
                 .memory(createPastMemoirRequestDto.getMemory())
-                .impression(createPastMemoirRequestDto.getImpression())
                 .status(createPastMemoirRequestDto.getStatus())
                 .build();
 

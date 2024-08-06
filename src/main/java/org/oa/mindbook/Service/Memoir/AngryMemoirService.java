@@ -34,7 +34,6 @@ public class AngryMemoirService {
         AngryMemoir angryMemoir = AngryMemoir.builder()
                 .user(user)
                 .memory(createAngryMemoirRequestDto.getMemory())
-                .impression(createAngryMemoirRequestDto.getImpression())
                 .status(createAngryMemoirRequestDto.getStatus())
                 .build();
 

@@ -13,8 +13,6 @@ public class CreateAnxietyMemoirRequestDto {
 
     private String memory;
 
-    private String impression;
-
     private String status;
 
 }

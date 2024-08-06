@@ -13,8 +13,6 @@ public class CreateAngryMemoirRequestDto {
 
     private String memory;
 
-    private String impression;
-
     private String status;
 
 }

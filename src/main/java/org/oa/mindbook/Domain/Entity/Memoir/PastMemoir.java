@@ -25,17 +25,13 @@ public class PastMemoir extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String memory;
 
-    @Column(columnDefinition = "TEXT")
-    private String impression;
-
     private String status;
 
     @Builder
-    public PastMemoir(User user, String pastAt, String memory, String impression, String status) {
+    public PastMemoir(User user, String pastAt, String memory, String status) {
         this.user = user;
         this.pastAt = pastAt;
         this.memory = memory;
-        this.impression = impression;
         this.status = status;
     }
 }

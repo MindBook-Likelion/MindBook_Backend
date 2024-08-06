@@ -26,8 +26,6 @@ public class AnxietyMemoirResponseDto {
 
     private String memory;
 
-    private String impression;
-
     private String status;
 
     private List<AnxietyMemoirCommentResponseDto> commentList;
@@ -39,7 +37,6 @@ public class AnxietyMemoirResponseDto {
                 .nickName(user.getNickName())
                 .createdAt(anxietyMemoir.getCreatedAt())
                 .memory(anxietyMemoir.getMemory())
-                .impression(anxietyMemoir.getImpression())
                 .status(anxietyMemoir.getStatus())
                 .commentList(commentList)
                 .build();

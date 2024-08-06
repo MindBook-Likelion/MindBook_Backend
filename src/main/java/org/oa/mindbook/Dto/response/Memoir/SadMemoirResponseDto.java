@@ -26,8 +26,6 @@ public class SadMemoirResponseDto {
 
     private String memory;
 
-    private String impression;
-
     private String status;
 
     private List<SadMemoirCommentResponseDto> commentList;
@@ -39,7 +37,6 @@ public class SadMemoirResponseDto {
                 .nickName(user.getNickName())
                 .createdAt(sadMemoir.getCreatedAt())
                 .memory(sadMemoir.getMemory())
-                .impression(sadMemoir.getImpression())
                 .status(sadMemoir.getStatus())
                 .commentList(commentList)
                 .build();

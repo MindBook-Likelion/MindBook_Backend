@@ -34,7 +34,6 @@ public class AnnoyMemoirService {
         AnnoyMemoir annoyMemoir = AnnoyMemoir.builder()
                 .user(user)
                 .memory(createAnnoyMemoirRequestDto.getMemory())
-                .impression(createAnnoyMemoirRequestDto.getImpression())
                 .status(createAnnoyMemoirRequestDto.getStatus())
                 .build();
 

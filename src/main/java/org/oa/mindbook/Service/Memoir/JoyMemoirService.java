@@ -33,7 +33,6 @@ public class JoyMemoirService {
         JoyMemoir joyMemoir = JoyMemoir.builder()
                 .user(user)
                 .memory(createJoyMemoirRequestDto.getMemory())
-                .impression(createJoyMemoirRequestDto.getImpression())
                 .status(createJoyMemoirRequestDto.getStatus())
                 .build();
 
