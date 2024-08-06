@@ -6,7 +6,7 @@ import org.oa.mindbook.Dto.response.Book.BookReportResDto;
 public interface BookReportService {
     Long save(Long userId, BookReportReqDto bookReportReqDto);
 
-    BookReportResDto getReportById(Long id);
+    BookReportResDto getReportByBookIdAndUserEmail(Long bookId, String email);
 
-    void deleteReportById(Long id);
+    void deleteReportByBookIdAndUserEmail(Long bookId, String email);
 }

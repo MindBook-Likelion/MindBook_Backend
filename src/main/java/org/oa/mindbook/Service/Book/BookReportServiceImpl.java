@@ -46,26 +46,28 @@ public class BookReportServiceImpl implements BookReportService {
         return savedBookReport.getId();
     }
 
-    @Override
-    public BookReportResDto getReportById(Long id) {
-
-        Optional<BookReport> bookReportOptional = bookReportRepository.findById(id);
+    public BookReportResDto getReportByBookIdAndUserEmail(Long bookId, String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        Optional<BookReport> bookReportOptional = bookReportRepository.findByBookIdAndUserId(bookId, user.getId());
 
         if (bookReportOptional.isPresent()) {
             BookReport bookReport = bookReportOptional.get();
             return new BookReportResDto(bookReport, bookReport.getBook(), bookReport.getUser());
         } else {
-            throw new IllegalArgumentException("존재하지 않는 독후감 아이디입니다: " + id);
+            throw new IllegalArgumentException("Report not found");
         }
     }
 
-    public void deleteReportById(Long id) {
-        Optional<BookReport> bookReportOptional = bookReportRepository.findById(id);
+    public void deleteReportByBookIdAndUserEmail(Long bookId, String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        Optional<BookReport> bookReportOptional = bookReportRepository.findByBookIdAndUserId(bookId, user.getId());
 
         if (bookReportOptional.isPresent()) {
-            bookReportRepository.deleteById(id);
+            bookReportRepository.deleteById(bookReportOptional.get().getId());
         } else {
-            throw new IllegalArgumentException("존재하지 않는 독후감 아이디입니다: " + id);
+            throw new IllegalArgumentException("Report not found");
         }
     }
 }
