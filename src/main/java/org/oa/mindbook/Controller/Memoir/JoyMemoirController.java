@@ -58,6 +58,15 @@ public class JoyMemoirController {
         return joyMemoirService.getJoyMemoirList(status, userId);
     }
 
+    @GetMapping("all")
+    public List<JoyMemoirListResponseDto> getJoyMemoirList(@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
+        return joyMemoirService.getJoyMemoirList(userId);
+    }
+
 
 
 
