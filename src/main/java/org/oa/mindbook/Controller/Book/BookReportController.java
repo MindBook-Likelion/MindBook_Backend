@@ -13,6 +13,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("")
 @RequiredArgsConstructor
@@ -40,28 +43,33 @@ public class BookReportController {
     @Operation(method = "GET", summary = "독후감 상세 조회")
     @GetMapping("/bookReport")
     public ResponseEntity<?> getReport(@AuthenticationPrincipal UserDetails userDetails,
-                                       @RequestParam Long reportId) {
+                                       @RequestParam Long bookId) {
         try {
-            BookReportResDto bookReportResDto = bookReportService.getReportById(reportId);
-            return ResponseEntity.status(HttpStatus.OK).body(bookReportResDto);
+            String email = userDetails.getUsername(); // Assuming userDetails contains user email
+            BookReportResDto bookReportResDto = bookReportService.getReportByBookIdAndUserEmail(bookId, email);
+            Map<String, Object> response = new HashMap<>();
+            response.put("success", true);
+            response.put("data", bookReportResDto);
+            return ResponseEntity.status(HttpStatus.OK).body(response);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
         }
     }
 
     @Operation(method = "DELETE", summary = "독후감 삭제")
     @DeleteMapping("/bookReport")
     public ResponseEntity<?> deleteReport(@AuthenticationPrincipal UserDetails userDetails,
-                                          @RequestParam Long reportId) {
+                                          @RequestParam Long bookId) {
         try {
-            bookReportService.deleteReportById(reportId);
-            return ResponseEntity.status(HttpStatus.OK).body("독후감 삭제가 완료되었습니다.");
+            String email = userDetails.getUsername(); // Assuming userDetails contains user email
+            bookReportService.deleteReportByBookIdAndUserEmail(bookId, email);
+            return ResponseEntity.status(HttpStatus.OK).body("{\"success\": true, \"message\": \"독후감 삭제가 완료되었습니다.\"}");
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("{\"success\": false, \"message\": \"" + e.getMessage() + "\"}");
         }
     }
 }
