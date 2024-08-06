@@ -49,7 +49,7 @@ public class AnnoyMemoirController {
         return annoyMemoirService.getAnnoyMemoir(annoyMemoirId, userId);
     }
 
-    @Operation(method = "GET", summary = "짜증 회고록 목록 조회")
+    @Operation(method = "GET", summary = "우리의 짜증 회고록 목록 조회")
     @GetMapping("")
     public List<AnnoyMemoirListResponseDto> getAnnoyMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         String email = customUserDetails.getUsername();

@@ -48,7 +48,7 @@ public class PastMemoirController {
         return pastMemoirService.getPastMemoir(pastMemoirId, userId);
     }
 
-    @Operation(method = "GET", summary = "추억 회고록 목록 조회")
+    @Operation(method = "GET", summary = "우리의 추억 회고록 목록 조회")
     @GetMapping("")
     public List<PastMemoirListResponseDto> getPastMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         String email = customUserDetails.getUsername();
