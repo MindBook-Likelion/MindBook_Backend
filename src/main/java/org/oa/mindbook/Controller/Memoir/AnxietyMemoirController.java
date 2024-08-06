@@ -48,7 +48,7 @@ public class AnxietyMemoirController {
         return anxietyMemoirService.getAnxietyMemoir(anxietyMemoirId, userId);
     }
 
-    @Operation(method = "GET", summary = "불안 회고록 목록 조회")
+    @Operation(method = "GET", summary = "우리의 불안 회고록 목록 조회")
     @GetMapping("")
     public List<AnxietyMemoirListResponseDto> getAnxietyMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         String email = customUserDetails.getUsername();

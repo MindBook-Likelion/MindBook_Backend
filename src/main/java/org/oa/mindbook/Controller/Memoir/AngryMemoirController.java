@@ -49,7 +49,7 @@ public class AngryMemoirController {
         return angryMemoirService.getAngryMemoir(angryMemoirId, userId);
     }
 
-    @Operation(method = "GET", summary = "화남 회고록 목록 조회")
+    @Operation(method = "GET", summary = "우리의 화남 회고록 목록 조회")
     @GetMapping("")
     public List<AngryMemoirListResponseDto> getAngryMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         String email = customUserDetails.getUsername();

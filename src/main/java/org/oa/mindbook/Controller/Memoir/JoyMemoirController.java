@@ -48,7 +48,7 @@ public class JoyMemoirController {
         return joyMemoirService.getJoyMemoir(joyMemoirId, userId);
     }
 
-    @Operation(method = "GET", summary = "기쁨 회고록 목록 작성")
+    @Operation(method = "GET", summary = "우리의 기쁨 회고록 목록 조회")
     @GetMapping("")
     public List<JoyMemoirListResponseDto> getJoyMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         String email = customUserDetails.getUsername();

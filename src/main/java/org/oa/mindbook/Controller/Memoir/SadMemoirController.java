@@ -48,7 +48,7 @@ public class SadMemoirController {
         return sadMemoirService.getSadMemoir(sadMemoirId, userId);
     }
 
-    @Operation(method = "GET", summary = "슬픔 회고록 목록 조회")
+    @Operation(method = "GET", summary = "우리의 슬픔 회고록 목록 조회")
     @GetMapping("")
     public List<SadMemoirListResponseDto> getSadMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         String email = customUserDetails.getUsername();
