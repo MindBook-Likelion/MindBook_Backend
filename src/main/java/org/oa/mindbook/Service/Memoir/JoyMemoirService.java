@@ -79,7 +79,7 @@ public class JoyMemoirService {
     }
 
     @Transactional
-    public List<JoyMemoirListResponseDto> getJoyMemoirList(Long userId) {
+    public List<JoyMemoirListResponseDto> getMyJoyMemoirList(Long userId) {
 
         User user = userRepository.findById(userId).orElseThrow();
         List<JoyMemoir> joyMemoirList = joyMemoirRepository.findByUserId(userId);

@@ -12,4 +12,6 @@ public interface AnnoyMemoirRepository extends JpaRepository<AnnoyMemoir, Long> 
     List<AnnoyMemoir> findByStatus(String status);
 
     void deleteAllByUser(User user);
+
+    List<AnnoyMemoir> findByUserId(Long userId);
 }

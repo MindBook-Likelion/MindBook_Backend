@@ -48,7 +48,7 @@ public class SadMemoirController {
         return sadMemoirService.getSadMemoir(sadMemoirId, userId);
     }
 
-    @Operation(method = "GET", summary = "슬픔 회고록 목록 작성")
+    @Operation(method = "GET", summary = "슬픔 회고록 목록 조회")
     @GetMapping("")
     public List<SadMemoirListResponseDto> getSadMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         String email = customUserDetails.getUsername();
@@ -56,5 +56,15 @@ public class SadMemoirController {
         Long userId = userService.findUserIdByEmail(email);
 
         return sadMemoirService.getSadMemoirList(status, userId);
+    }
+
+    @Operation(method = "GET", summary = "나의 슬픔 회고록 목록 조회")
+    @GetMapping("/all")
+    public List<SadMemoirListResponseDto> getSadMemoirList( @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
+        return sadMemoirService.getMySadMemoirList(userId);
     }
 }

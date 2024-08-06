@@ -78,4 +78,24 @@ public class AngryMemoirService {
 
         return responseDtoList;
     }
+
+    @Transactional
+    public List<AngryMemoirListResponseDto> getMyAngryMemoirList(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow();
+        List<AngryMemoir> angryMemoirList = angryMemoirRepository.findByUserId(userId);
+
+
+        List<AngryMemoirListResponseDto> responseDtoList = angryMemoirList.stream().map(
+                angryMemoir -> {
+                    return AngryMemoirListResponseDto.builder()
+                            .angryMemoirId(angryMemoir.getAngryMemoirId())
+                            .nickName(angryMemoir.getUser().getNickName())
+                            .createdAt(angryMemoir.getCreatedAt())
+                            .status(angryMemoir.getStatus())
+                            .build();
+                }
+        ).collect(Collectors.toList());
+
+        return responseDtoList;
+    }
 }

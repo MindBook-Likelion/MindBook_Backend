@@ -49,7 +49,7 @@ public class AngryMemoirController {
         return angryMemoirService.getAngryMemoir(angryMemoirId, userId);
     }
 
-    @Operation(method = "GET", summary = "화남 회고록 목록 작성")
+    @Operation(method = "GET", summary = "화남 회고록 목록 조회")
     @GetMapping("")
     public List<AngryMemoirListResponseDto> getAngryMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         String email = customUserDetails.getUsername();
@@ -57,5 +57,15 @@ public class AngryMemoirController {
         Long userId = userService.findUserIdByEmail(email);
 
         return angryMemoirService.getAngryMemoirList(status, userId);
+    }
+
+    @Operation(method = "GET", summary = "나의 화남 회고록 목록 조회")
+    @GetMapping("/all")
+    public List<AngryMemoirListResponseDto> getAngryMemoirList(@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
+        return angryMemoirService.getMyAngryMemoirList(userId);
     }
 }

@@ -49,7 +49,7 @@ public class AnnoyMemoirController {
         return annoyMemoirService.getAnnoyMemoir(annoyMemoirId, userId);
     }
 
-    @Operation(method = "GET", summary = "짜증 회고록 목록 작성")
+    @Operation(method = "GET", summary = "짜증 회고록 목록 조회")
     @GetMapping("")
     public List<AnnoyMemoirListResponseDto> getAnnoyMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         String email = customUserDetails.getUsername();
@@ -57,6 +57,16 @@ public class AnnoyMemoirController {
         Long userId = userService.findUserIdByEmail(email);
 
         return annoyMemoirService.getAnnoyMemoirList(status, userId);
+    }
+
+    @Operation(method = "GET", summary = "나의 짜증 회고록 목록 조회")
+    @GetMapping("/all")
+    public List<AnnoyMemoirListResponseDto> getAnnoyMemoirList(@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
+        return annoyMemoirService.getMyAnnoyMemoirList(userId);
     }
 
 }

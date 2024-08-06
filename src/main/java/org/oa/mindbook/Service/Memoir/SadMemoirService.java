@@ -79,4 +79,23 @@ public class SadMemoirService {
 
         return responseDtoList;
     }
+
+    @Transactional
+    public List<SadMemoirListResponseDto> getMySadMemoirList(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow();
+        List<SadMemoir> sadMemoirList = sadMemoirRepository.findByUserId(userId);
+
+        List<SadMemoirListResponseDto> responseDtoList = sadMemoirList.stream().map(
+                sadMemoir -> {
+                    return SadMemoirListResponseDto.builder()
+                            .sadMemoirId(sadMemoir.getSadMemoirId())
+                            .nickName(sadMemoir.getUser().getNickName())
+                            .createdAt(sadMemoir.getCreatedAt())
+                            .status(sadMemoir.getStatus())
+                            .build();
+                }
+        ).collect(Collectors.toList());
+
+        return responseDtoList;
+    }
 }
