@@ -49,8 +49,12 @@ public class UserController {
     @PutMapping("/update")
     @Operation(summary = "비밀번호 변경", description = "비밀번호를 변경할 수 있습니다.")
     public ResponseEntity<?> updateUser(@AuthenticationPrincipal UserDetails userDetails, @RequestBody UpdateUserRequestDto userUpdateRequestDto) {
-        UserResponseDto responseDto = userService.updateUser(userDetails.getUsername(), userUpdateRequestDto);
-        return ResponseEntity.ok(responseDto);
+        try {
+            UserResponseDto responseDto = userService.updateUser(userDetails.getUsername(), userUpdateRequestDto);
+            return ResponseEntity.ok(responseDto);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("error", e.getMessage()));
+        }
     }
 
     // 탈퇴

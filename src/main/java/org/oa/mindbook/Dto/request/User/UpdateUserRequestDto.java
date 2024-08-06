@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UpdateUserRequestDto {
-    public String email;
-
     public String password;
+
+    public String newPassword;
 }
