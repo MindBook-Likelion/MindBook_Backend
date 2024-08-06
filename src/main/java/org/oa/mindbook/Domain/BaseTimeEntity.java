@@ -18,7 +18,7 @@ public abstract class BaseTimeEntity {
 
     @PrePersist
     public void onPrePersist(){
-        this.createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd"));
+        this.createdAt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일"));
     }
 }
 
