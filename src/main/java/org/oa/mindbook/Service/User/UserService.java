@@ -2,7 +2,6 @@ package org.oa.mindbook.Service.User;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.oa.mindbook.Domain.Entity.Memoir.AngryMemoir;
 import org.oa.mindbook.Domain.Entity.User.User;
 import org.oa.mindbook.Dto.request.User.CreateUserRequestDto;
 import org.oa.mindbook.Dto.request.User.UpdateUserRequestDto;
@@ -19,6 +18,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Collections;
 import java.util.Optional;
 
 @Slf4j
@@ -109,7 +111,7 @@ public class UserService {
 
     }
 
-    public String getDaysSinceJoinedByEmail(String email) {
+    public Map<String, String> getDaysSinceJoinedByEmail(String email) {
         // 이메일로 사용자 조회
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new IllegalArgumentException("사용자가 존재하지 않습니다."));
@@ -124,7 +126,12 @@ public class UserService {
         // 현재 날짜와의 차이 계산
         long daysSinceJoined = Duration.between(createdAt.atStartOfDay(), LocalDate.now().atStartOfDay()).toDays();
 
+        String message = String.format("%s님이 마음책방에 오신지 %d일 되었어요! 😀", nickName, daysSinceJoined);
 
-        return String.format("%s님이 마음책방에 오신지 %d일 되었어요! 😀", nickName, daysSinceJoined);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", message);
+
+        return response;
     }
+
 }

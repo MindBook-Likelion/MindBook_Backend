@@ -2,21 +2,21 @@ package org.oa.mindbook.Controller.User;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.oa.mindbook.Domain.Entity.User.User;
 import org.oa.mindbook.Dto.request.User.CreateUserRequestDto;
 import org.oa.mindbook.Dto.request.User.LoginRequestDto;
 import org.oa.mindbook.Dto.request.User.UpdateUserRequestDto;
 import org.oa.mindbook.Dto.response.User.UserResponseDto;
 import org.oa.mindbook.Service.User.EmailService;
 import org.oa.mindbook.Service.User.UserService;
+
+import java.util.Collections;
+import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -80,12 +80,13 @@ public class UserController {
     public ResponseEntity<?> getCreatedAt(@AuthenticationPrincipal UserDetails userDetails) {
         String email = userDetails.getUsername(); // 이메일을 가져옴
         try {
-            String message = userService.getDaysSinceJoinedByEmail(email); // 서비스 메서드를 호출하여 이메일로 닉네임을 조회
-            return ResponseEntity.ok(message);
-        } catch (UsernameNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+            Map<String, String> response = userService.getDaysSinceJoinedByEmail(email); // 서비스 메서드를 호출하여 이메일로 닉네임을 조회
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) { // UsernameNotFoundException 대신 IllegalArgumentException으로 변경
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonMap("error", e.getMessage()));
         }
     }
+
 
     @Operation(method = "POST", summary = "로그인", description = "로그인합니다. email과 password를 body에 담아서 전송합니다.")
     @PostMapping("/login")
