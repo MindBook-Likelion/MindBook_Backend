@@ -81,4 +81,23 @@ public class AnxietyMemoirService {
 
         return responseDtoList;
     }
+    @Transactional
+    public List<AnxietyMemoirListResponseDto> getMyAnxietyMemoirList(Long userId) {
+
+        User user = userRepository.findById(userId).orElseThrow();
+        List<AnxietyMemoir> anxietyMemoirList = anxietyMemoirRepository.findByUserId(userId);
+
+        List<AnxietyMemoirListResponseDto> responseDtoList = anxietyMemoirList.stream().map(
+                anxietyMemoir -> {
+                    return AnxietyMemoirListResponseDto.builder()
+                            .anxietyMemoirId(anxietyMemoir.getAnxietyMemoirId())
+                            .nickName(anxietyMemoir.getUser().getNickName())
+                            .createdAt(anxietyMemoir.getCreatedAt())
+                            .status(anxietyMemoir.getStatus())
+                            .build();
+                }
+        ).collect(Collectors.toList());
+
+        return responseDtoList;
+    }
 }

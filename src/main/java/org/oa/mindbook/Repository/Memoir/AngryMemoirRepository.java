@@ -12,4 +12,6 @@ public interface AngryMemoirRepository extends JpaRepository<AngryMemoir, Long> 
     List<AngryMemoir> findByStatus(String status);
 
     void deleteAllByUser(User user);
+
+    List<AngryMemoir> findByUserId(Long userId);
 }

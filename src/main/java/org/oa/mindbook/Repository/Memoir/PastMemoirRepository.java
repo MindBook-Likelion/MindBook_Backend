@@ -12,4 +12,6 @@ public interface PastMemoirRepository extends JpaRepository<PastMemoir, Long> {
     List<PastMemoir> findByStatus(String status);
 
     void deleteAllByUser(User user);
+
+    List<PastMemoir> findByUserId(Long userId);
 }

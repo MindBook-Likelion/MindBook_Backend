@@ -82,4 +82,25 @@ public class AnnoyMemoirService {
 
 
     }
+
+    @Transactional
+    public List<AnnoyMemoirListResponseDto> getMyAnnoyMemoirList(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow();
+        List<AnnoyMemoir> annoyMemoirList = annoyMemoirRepository.findByUserId(userId);
+
+        List<AnnoyMemoirListResponseDto> responseDtoList = annoyMemoirList.stream().map(
+                annoyMemoir -> {
+                    return AnnoyMemoirListResponseDto.builder()
+                            .annoyMemoirId(annoyMemoir.getAnnoyMemoirId())
+                            .nickName(annoyMemoir.getUser().getNickName())
+                            .createdAt(annoyMemoir.getCreatedAt())
+                            .status(annoyMemoir.getStatus())
+                            .build();
+                }
+        ).collect(Collectors.toList());
+
+        return responseDtoList;
+
+
+    }
 }

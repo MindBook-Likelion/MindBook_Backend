@@ -12,4 +12,6 @@ public interface SadMemoirRepository extends JpaRepository<SadMemoir, Long> {
     List<SadMemoir> findByStatus(String status);
 
     void deleteAllByUser(User user);
+
+    List<SadMemoir> findByUserId(Long userId);
 }

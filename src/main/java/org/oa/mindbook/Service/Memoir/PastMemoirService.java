@@ -64,8 +64,31 @@ public class PastMemoirService {
 
     @Transactional
     public List<PastMemoirListResponseDto> getPastMemoirList(String status, Long userId) {
-        List<PastMemoir> pastMemoirList = pastMemoirRepository.findByStatus(status);
         User user = userRepository.findById(userId).orElseThrow();
+        List<PastMemoir> pastMemoirList = pastMemoirRepository.findByStatus(status);
+
+
+        List<PastMemoirListResponseDto> responseDtoList = pastMemoirList.stream().map(
+                pastMemoir -> {
+                    return PastMemoirListResponseDto.builder()
+                            .pastMemoirId(pastMemoir.getPastMemoirId())
+                            .nickName(pastMemoir.getUser().getNickName())
+                            .createdAt(pastMemoir.getCreatedAt())
+                            .status(pastMemoir.getStatus())
+                            .build();
+                }
+        ).collect(Collectors.toList());
+
+
+        return responseDtoList;
+    }
+
+    @Transactional
+    public List<PastMemoirListResponseDto> getMyPastMemoirList(Long userId) {
+
+        User user = userRepository.findById(userId).orElseThrow();
+        List<PastMemoir> pastMemoirList = pastMemoirRepository.findByUserId(userId);
+
 
         List<PastMemoirListResponseDto> responseDtoList = pastMemoirList.stream().map(
                 pastMemoir -> {

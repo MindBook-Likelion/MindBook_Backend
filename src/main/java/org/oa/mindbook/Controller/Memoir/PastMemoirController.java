@@ -48,13 +48,23 @@ public class PastMemoirController {
         return pastMemoirService.getPastMemoir(pastMemoirId, userId);
     }
 
-    @Operation(method = "GET", summary = "추억 회고록 목록 작성")
+    @Operation(method = "GET", summary = "추억 회고록 목록 조회")
     @GetMapping("")
-    public List<PastMemoirListResponseDto> getSadMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
+    public List<PastMemoirListResponseDto> getPastMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         String email = customUserDetails.getUsername();
 
         Long userId = userService.findUserIdByEmail(email);
 
         return pastMemoirService.getPastMemoirList(status, userId);
+    }
+
+    @Operation(method = "GET", summary = "나의 추억 회고록 목록 조회")
+    @GetMapping("/all")
+    public List<PastMemoirListResponseDto> getMyPastMemoirList(@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
+        return pastMemoirService.getMyPastMemoirList(userId);
     }
 }

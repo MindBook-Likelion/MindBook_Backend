@@ -48,7 +48,7 @@ public class AnxietyMemoirController {
         return anxietyMemoirService.getAnxietyMemoir(anxietyMemoirId, userId);
     }
 
-    @Operation(method = "GET", summary = "불안 회고록 목록 작성")
+    @Operation(method = "GET", summary = "불안 회고록 목록 조회")
     @GetMapping("")
     public List<AnxietyMemoirListResponseDto> getAnxietyMemoirList(@RequestParam String status, @AuthenticationPrincipal CustomUserDetails customUserDetails) {
         String email = customUserDetails.getUsername();
@@ -56,5 +56,16 @@ public class AnxietyMemoirController {
         Long userId = userService.findUserIdByEmail(email);
 
         return anxietyMemoirService.getAnxietyMemoirList(status, userId);
+    }
+
+
+    @Operation(method = "GET", summary = "나의 불안 회고록 목록 조회")
+    @GetMapping("/all")
+    public List<AnxietyMemoirListResponseDto> getAnxietyMemoirList(@AuthenticationPrincipal CustomUserDetails customUserDetails) {
+        String email = customUserDetails.getUsername();
+
+        Long userId = userService.findUserIdByEmail(email);
+
+        return anxietyMemoirService.getMyAnxietyMemoirList(userId);
     }
 }

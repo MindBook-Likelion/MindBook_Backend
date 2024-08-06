@@ -12,4 +12,6 @@ public interface AnxietyMemoirRepository extends JpaRepository<AnxietyMemoir, Lo
     List<AnxietyMemoir> findByStatus(String status);
 
     void deleteAllByUser(User user);
+
+    List<AnxietyMemoir> findByUserId(Long userId);
 }
