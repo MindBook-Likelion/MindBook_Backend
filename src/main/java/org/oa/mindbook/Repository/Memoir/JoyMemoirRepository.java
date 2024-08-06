@@ -13,4 +13,6 @@ public interface JoyMemoirRepository extends JpaRepository<JoyMemoir, Long> {
     List<JoyMemoir> findByStatus(String status);
 
     void deleteAllByUser(User user);
+
+    List<JoyMemoir> findByUserId(Long userId);
 }
