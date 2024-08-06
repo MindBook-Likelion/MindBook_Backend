@@ -34,7 +34,6 @@ public class SadMemoirService {
         SadMemoir sadMemoir = SadMemoir.builder()
                 .user(user)
                 .memory(createSadMemoirRequestDto.getMemory())
-                .impression(createSadMemoirRequestDto.getImpression())
                 .status(createSadMemoirRequestDto.getStatus())
                 .build();
 

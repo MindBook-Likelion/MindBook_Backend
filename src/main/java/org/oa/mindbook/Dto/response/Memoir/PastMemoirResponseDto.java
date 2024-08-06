@@ -28,8 +28,6 @@ public class PastMemoirResponseDto {
 
     private String memory;
 
-    private String impression;
-
     private String status;
 
     private List<PastMemoirCommentResponseDto> commentList;
@@ -42,7 +40,6 @@ public class PastMemoirResponseDto {
                 .createdAt(pastMemoir.getCreatedAt())
                 .pastAt(pastMemoir.getPastAt())
                 .memory(pastMemoir.getMemory())
-                .impression(pastMemoir.getImpression())
                 .status(pastMemoir.getStatus())
                 .commentList(commentList)
                 .build();

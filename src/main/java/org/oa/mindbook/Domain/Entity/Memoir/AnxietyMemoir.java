@@ -24,16 +24,12 @@ public class AnxietyMemoir extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT")
     private String memory;
 
-    @Column(columnDefinition = "TEXT")
-    private String impression;
-
     private String status;
 
     @Builder
-    public AnxietyMemoir(User user, String memory, String impression, String status) {
+    public AnxietyMemoir(User user, String memory, String status) {
         this.user = user;
         this.memory = memory;
-        this.impression = impression;
         this.status = status;
     }
 }

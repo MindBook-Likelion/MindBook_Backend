@@ -34,7 +34,6 @@ public class AnxietyMemoirService {
         AnxietyMemoir anxietyMemoir = AnxietyMemoir.builder()
                 .user(user)
                 .memory(createAnxietyMemoirRequestDto.getMemory())
-                .impression(createAnxietyMemoirRequestDto.getImpression())
                 .status(createAnxietyMemoirRequestDto.getStatus())
                 .build();
 

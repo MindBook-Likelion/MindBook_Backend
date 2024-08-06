@@ -28,8 +28,6 @@ public class JoyMemoirResponseDto {
 
     private String memory;
 
-    private String impression;
-
     private String status;
 
     private List<JoyMemoirCommentResponseDto> commentList;
@@ -41,7 +39,6 @@ public class JoyMemoirResponseDto {
                 .nickName(user.getNickName())
                 .createdAt(joyMemoir.getCreatedAt())
                 .memory(joyMemoir.getMemory())
-                .impression(joyMemoir.getImpression())
                 .status(joyMemoir.getStatus())
                 .commentList(commentList)
                 .build();
